@@ -161,7 +161,7 @@ APPS = [
         "category": "Weather + Commodities",
         "desc": "Secondary US weather and temperature analysis.",
         "url": "https://usweather2.streamlit.app/"
-    }
+    },
 
     {
         "name": "🏦 NIFTY Sector Analysis"
