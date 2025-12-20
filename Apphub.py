@@ -51,22 +51,119 @@ APPS = [
     {
         "name": "🪐 Planetary Aspect Scanner",
         "category": "Astrology",
-        "desc": "Planetary aspect filtering between two dates (Sidereal).",
-        "url": "https://aspectfilter.streamlit.app"
+        "desc": "Filter planetary aspects between two dates using sidereal calculations.",
+        "url": "https://aspectfilter.streamlit.app/"
+    },
+    {
+        "name": "🪐 Stock–Astro Aspect Scanner",
+        "category": "Astrology + Market",
+        "desc": "Astrological aspect-based stock market analysis.",
+        "url": "https://stock-scanner-ascpect.streamlit.app/"
+    },
+    {
+        "name": "🔁 F&O Reversal Point Scanner",
+        "category": "Derivatives",
+        "desc": "Identify high-probability reversal points in F&O stocks.",
+        "url": "https://fnoreversalpnt.streamlit.app/"
+    },
+    {
+        "name": "📉 Option Chain by Gaurav",
+        "category": "Derivatives",
+        "desc": "Option chain analysis with OI, strikes, and market structure.",
+        "url": "https://optionchainbygaurav.streamlit.app/"
+    },
+    {
+        "name": "🌍 Live Planet Position",
+        "category": "Astrology",
+        "desc": "Real-time planetary positions with sidereal reference.",
+        "url": "https://liveplanetpostion.streamlit.app/"
+    },
+    {
+        "name": "📚 RaoSaab Research Desk",
+        "category": "Research",
+        "desc": "Astro–market research tools and experiments.",
+        "url": "https://raosaab.streamlit.app/"
+    },
+    {
+        "name": "💰 FII–DII Activity Tracker",
+        "category": "Market Data",
+        "desc": "Track daily, weekly and monthly FII–DII activity.",
+        "url": "https://fiidii.streamlit.app/"
+    },
+    {
+        "name": "🔄 F&O Price Cycle",
+        "category": "Derivatives",
+        "desc": "Price cycle behavior analysis in F&O instruments.",
+        "url": "https://fnopricecycle.streamlit.app/"
+    },
+    {
+        "name": "📐 Gann Cycle Analyzer",
+        "category": "Technical Analysis",
+        "desc": "Gann-based time and price cycle analysis.",
+        "url": "https://ganncycle.streamlit.app/"
+    },
+    {
+        "name": "⏱️ NIFTY Time Cycle",
+        "category": "Index Analysis",
+        "desc": "Time-cycle based forecasting for NIFTY.",
+        "url": "https://niftytimecycle.streamlit.app/"
+    },
+    {
+        "name": "⚡ Intraday Reversal Scanner",
+        "category": "Intraday Trading",
+        "desc": "Detect intraday reversal setups with precision.",
+        "url": "https://intradayreversal.streamlit.app/"
+    },
+    {
+        "name": "📰 Market News Aggregator",
+        "category": "News",
+        "desc": "All important market and global news at one place.",
+        "url": "https://allnews.streamlit.app/"
     },
     {
         "name": "📊 Multi-Timeframe Stock Screener",
         "category": "Stock Market",
-        "desc": "EMA, trend, breakout, multi-timeframe scanner.",
+        "desc": "EMA, trend, breakout & multi-timeframe stock scanner.",
         "url": "https://multis.streamlit.app/"
     },
     {
-        "name": "📉 OI & Option Chain Analyzer",
+        "name": "📉 OI Analytics (GSY)",
         "category": "Derivatives",
-        "desc": "OTM decay, Greeks, expiry-wise option chain analysis.",
-        "url": "https://oi-scanner.streamlit.app"
+        "desc": "Advanced Open Interest analysis and insights.",
+        "url": "https://oiwithgsy.streamlit.app/"
+    },
+    {
+        "name": "📉 OI Decay Scanner",
+        "category": "Derivatives",
+        "desc": "Option OI decay and expiry-based behavior analysis.",
+        "url": "https://oidecay.streamlit.app/"
+    },
+    {
+        "name": "☀️ Sun Cycle Analyzer",
+        "category": "Astrology",
+        "desc": "Solar cycle based timing and trend insights.",
+        "url": "https://suncycle.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather & Energy Impact",
+        "category": "Weather + Commodities",
+        "desc": "US weather analysis with energy and commodity impact.",
+        "url": "https://usaweather.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather (Alt-1)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather1.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather (Alt-2)",
+        "category": "Weather + Commodities",
+        "desc": "Secondary US weather and temperature analysis.",
+        "url": "https://usweather2.streamlit.app/"
     }
 ]
+
 
 # ================================
 # SEARCH & FILTER
