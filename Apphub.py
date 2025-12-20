@@ -1,8 +1,10 @@
 import streamlit as st
 import requests
-import time
 import hashlib
 
+# ================================
+# LOGIN FUNCTION (SAME FILE)
+# ================================
 def check_login():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
@@ -27,9 +29,9 @@ def check_login():
 
     st.stop()
 
-
-from login import check_login   # or paste login code above directly
-
+# ================================
+# PAGE CONFIG
+# ================================
 st.set_page_config(
     page_title="App Hub",
     page_icon="🧭",
@@ -40,7 +42,6 @@ check_login()
 
 st.title("🧭 Analytics & Scanner Hub")
 st.caption("Single login • All tools • Live status")
-
 st.divider()
 
 # ================================
@@ -100,8 +101,7 @@ for app in APPS:
         st.caption(f"Category: {app['category']}")
 
     with col2:
-        live = is_live(app["url"])
-        if live:
+        if is_live(app["url"]):
             st.success("🟢 Live")
         else:
             st.error("🔴 Down")
