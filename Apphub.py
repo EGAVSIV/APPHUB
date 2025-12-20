@@ -1,6 +1,32 @@
 import streamlit as st
 import requests
 import time
+import hashlib
+
+def check_login():
+    if "logged_in" not in st.session_state:
+        st.session_state.logged_in = False
+
+    if st.session_state.logged_in:
+        return True
+
+    st.title("🔐 Login Required")
+
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        users = st.secrets["users"]
+        hashed = hashlib.sha256(password.encode()).hexdigest()
+
+        if username in users and users[username] == hashed:
+            st.session_state.logged_in = True
+            st.rerun()
+        else:
+            st.error("Invalid credentials")
+
+    st.stop()
+
 
 from login import check_login   # or paste login code above directly
 
