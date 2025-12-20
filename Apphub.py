@@ -58,7 +58,7 @@ APPS = [
         "name": "📊 Multi-Timeframe Stock Screener",
         "category": "Stock Market",
         "desc": "EMA, trend, breakout, multi-timeframe scanner.",
-        "url": "https://multitimeframescreener.streamlit.app"
+        "url": "https://multis.streamlit.app/"
     },
     {
         "name": "📉 OI & Option Chain Analyzer",
