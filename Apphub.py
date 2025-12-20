@@ -49,13 +49,13 @@ st.divider()
 # ================================
 APPS = [
     {
-        "name": "🪐☀️ Planetary Aspect Scanner",
+        "name": "🪐-☀️ Planetary Aspect Scanner",
         "category": "Astrology+Equity",
         "desc": "Filter planetary aspects between two dates using sidereal calculations.",
         "url": "https://aspectfilter.streamlit.app/"
     },
     {
-        "name": "🪐-"📉 Stocks Movement on Aspects",
+        "name": "🪐-📉 Stocks Movement on Aspects",
         "category": "Astrology+Equity",
         "desc": "Astrological aspect-based stock market analysis.",
         "url": "https://stock-scanner-ascpect.streamlit.app/"
@@ -73,7 +73,7 @@ APPS = [
         "url": "https://optionchainbygaurav.streamlit.app/"
     },
     {
-        "name": "🌍 Live Planet Position",
+        "name": "🌍-🪐-☀️ Live Planet Position",
         "category": "Astrology",
         "desc": "Real-time planetary positions with sidereal reference.",
         "url": "https://liveplanetpostion.streamlit.app/"
