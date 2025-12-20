@@ -1,9 +1,9 @@
 name: Keep Streamlit Apps Alive
 
 on:
-  workflow_dispatch:   # ✅ Manual Run Button
+  workflow_dispatch:
   schedule:
-    - cron: "0 */2 * * *"   # ⏱️ Every 2 hours
+    - cron: "0 */2 * * *"
 
 jobs:
   ping:
@@ -11,22 +11,22 @@ jobs:
     steps:
       - name: Ping Streamlit Apps
         run: |
-          curl -L https://aspectfilter.streamlit.app/
-          curl -L https://stock-scanner-ascpect.streamlit.app/
-          curl -L https://fnoreversalpnt.streamlit.app/
-          curl -L https://optionchainbygaurav.streamlit.app/
-          curl -L https://liveplanetpostion.streamlit.app/
-          curl -L https://raosaab.streamlit.app/
-          curl -L https://fiidii.streamlit.app/
-          curl -L https://fnopricecycle.streamlit.app/
-          curl -L https://ganncycle.streamlit.app/
-          curl -L https://niftytimecycle.streamlit.app/
-          curl -L https://intradayreversal.streamlit.app/
-          curl -L https://allnews.streamlit.app/
-          curl -L https://multis.streamlit.app/
-          curl -L https://oiwithgsy.streamlit.app/
-          curl -L https://oidecay.streamlit.app/
-          curl -L https://suncycle.streamlit.app/
-          curl -L https://usaweather.streamlit.app/
-          curl -L https://usaweather1.streamlit.app/
-          curl -L https://usweather2.streamlit.app/
+          curl -I https://aspectfilter.streamlit.app/
+          curl -I https://stock-scanner-ascpect.streamlit.app/
+          curl -I https://fnoreversalpnt.streamlit.app/
+          curl -I https://optionchainbygaurav.streamlit.app/
+          curl -I https://liveplanetpostion.streamlit.app/
+          curl -I https://raosaab.streamlit.app/
+          curl -I https://fiidii.streamlit.app/
+          curl -I https://fnopricecycle.streamlit.app/
+          curl -I https://ganncycle.streamlit.app/
+          curl -I https://niftytimecycle.streamlit.app/
+          curl -I https://intradayreversal.streamlit.app/
+          curl -I https://allnews.streamlit.app/
+          curl -I https://multis.streamlit.app/
+          curl -I https://oiwithgsy.streamlit.app/
+          curl -I https://oidecay.streamlit.app/
+          curl -I https://suncycle.streamlit.app/
+          curl -I https://usaweather.streamlit.app/
+          curl -I https://usaweather1.streamlit.app/
+          curl -I https://usweather2.streamlit.app/
