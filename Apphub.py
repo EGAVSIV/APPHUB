@@ -93,7 +93,7 @@ APPS = [
     {
         "name": "🔄 F&O Price Cycle",
         "category": "FNO",
-        "desc": "Price cycle behavior analysis in F&O instruments.",
+        "desc": "Price cycle based on Weekly Close 3-69 in F&O instruments.",
         "url": "https://fnopricecycle.streamlit.app/"
     },
     {
