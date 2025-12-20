@@ -162,6 +162,15 @@ APPS = [
         "desc": "Secondary US weather and temperature analysis.",
         "url": "https://usweather2.streamlit.app/"
     }
+
+    {
+        "name": "🏦 NIFTY Sector Analysis"
+        "category": "Screener",
+        "desc": "Sector anlysis with sector rotation",
+        "url": "https://sectoranalysis.streamlit.app/"
+    }
+
+    
 ]
 
 
