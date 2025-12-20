@@ -49,26 +49,26 @@ st.divider()
 # ================================
 APPS = [
     {
-        "name": "🪐 Planetary Aspect Scanner",
-        "category": "Astrology",
+        "name": "🪐☀️ Planetary Aspect Scanner",
+        "category": "Astrology+Equity",
         "desc": "Filter planetary aspects between two dates using sidereal calculations.",
         "url": "https://aspectfilter.streamlit.app/"
     },
     {
-        "name": "🪐 Stock–Astro Aspect Scanner",
-        "category": "Astrology + Market",
+        "name": "🪐-"📉 Stocks Movement on Aspects",
+        "category": "Astrology+Equity",
         "desc": "Astrological aspect-based stock market analysis.",
         "url": "https://stock-scanner-ascpect.streamlit.app/"
     },
     {
-        "name": "🔁 F&O Reversal Point Scanner",
-        "category": "Derivatives",
+        "name": "🔁 F&O Reversal Price & Time ",
+        "category": "FNO & Astro",
         "desc": "Identify high-probability reversal points in F&O stocks.",
         "url": "https://fnoreversalpnt.streamlit.app/"
     },
     {
         "name": "📉 Option Chain by Gaurav",
-        "category": "Derivatives",
+        "category": "FNO",
         "desc": "Option chain analysis with OI, strikes, and market structure.",
         "url": "https://optionchainbygaurav.streamlit.app/"
     },
@@ -80,8 +80,8 @@ APPS = [
     },
     {
         "name": "📚 RaoSaab Research Desk",
-        "category": "Research",
-        "desc": "Astro–market research tools and experiments.",
+        "category": "Screener",
+        "desc": "Stock Filtration As per AS",
         "url": "https://raosaab.streamlit.app/"
     },
     {
@@ -92,25 +92,25 @@ APPS = [
     },
     {
         "name": "🔄 F&O Price Cycle",
-        "category": "Derivatives",
+        "category": "FNO",
         "desc": "Price cycle behavior analysis in F&O instruments.",
         "url": "https://fnopricecycle.streamlit.app/"
     },
     {
         "name": "📐 Gann Cycle Analyzer",
-        "category": "Technical Analysis",
+        "category": "GANN",
         "desc": "Gann-based time and price cycle analysis.",
         "url": "https://ganncycle.streamlit.app/"
     },
     {
         "name": "⏱️ NIFTY Time Cycle",
-        "category": "Index Analysis",
+        "category": "Index",
         "desc": "Time-cycle based forecasting for NIFTY.",
         "url": "https://niftytimecycle.streamlit.app/"
     },
     {
         "name": "⚡ Intraday Reversal Scanner",
-        "category": "Intraday Trading",
+        "category": "FNO & Astro",
         "desc": "Detect intraday reversal setups with precision.",
         "url": "https://intradayreversal.streamlit.app/"
     },
@@ -122,25 +122,25 @@ APPS = [
     },
     {
         "name": "📊 Multi-Timeframe Stock Screener",
-        "category": "Stock Market",
-        "desc": "EMA, trend, breakout & multi-timeframe stock scanner.",
+        "category": "Screener",
+        "desc": "Multiple Scan Stock Selection",
         "url": "https://multis.streamlit.app/"
     },
     {
         "name": "📉 OI Analytics (GSY)",
-        "category": "Derivatives",
+        "category": "FNO",
         "desc": "Advanced Open Interest analysis and insights.",
         "url": "https://oiwithgsy.streamlit.app/"
     },
     {
         "name": "📉 OI Decay Scanner",
-        "category": "Derivatives",
+        "category": "FNO",
         "desc": "Option OI decay and expiry-based behavior analysis.",
         "url": "https://oidecay.streamlit.app/"
     },
     {
         "name": "☀️ Sun Cycle Analyzer",
-        "category": "Astrology",
+        "category": "Astrology+Equity",
         "desc": "Solar cycle based timing and trend insights.",
         "url": "https://suncycle.streamlit.app/"
     },
