@@ -164,7 +164,7 @@ APPS = [
     },
 
     {
-        "name": "🏦 NIFTY Sector Analysis"
+        "name": "🏦 NIFTY Sector Analysis",
         "category": "Screener",
         "desc": "Sector anlysis with sector rotation",
         "url": "https://sectoranalysis.streamlit.app/"
