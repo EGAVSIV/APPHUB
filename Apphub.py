@@ -168,6 +168,13 @@ APPS = [
         "category": "Screener",
         "desc": "Sector anlysis with sector rotation",
         "url": "https://sectoranalysis.streamlit.app/"
+    },
+
+    {
+        "name": "🏦 Company Annoncement to NSE",
+        "category": "Screener",
+        "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
+        "url": "https://orderbooktrack.streamlit.app/"
     }
 
     
