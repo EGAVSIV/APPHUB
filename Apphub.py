@@ -171,7 +171,7 @@ APPS = [
     },
 
     {
-        "name": "🏦 Company Annoncement to NSE",
+        "name": "🏦 Company Announcement to NSE",
         "category": "Screener",
         "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
         "url": "https://orderbooktrack.streamlit.app/"
