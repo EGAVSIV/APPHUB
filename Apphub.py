@@ -66,12 +66,7 @@ APPS = [
         "desc": "Identify high-probability reversal points in F&O stocks.",
         "url": "https://fnoreversalpnt.streamlit.app/"
     },
-    {
-        "name": "📉 Option Chain by Gaurav",
-        "category": "FNO",
-        "desc": "Option chain analysis with OI, strikes, and market structure.",
-        "url": "https://optionchainbygaurav.streamlit.app/"
-    },
+
     {
         "name": "🌍-🪐-☀️ Live Planet Position",
         "category": "Astrology",
@@ -126,17 +121,25 @@ APPS = [
         "desc": "Multiple Scan Stock Selection",
         "url": "https://multis.streamlit.app/"
     },
+    
     {
-        "name": "📚 OI Analytics (GSY)",
-        "category": "FNO",
-        "desc": "Advanced Open Interest analysis and insights.",
-        "url": "https://oiwithgsy.streamlit.app/"
-    },
-    {
-        "name": "📉 OI Decay Scanner",
+        "name": "1️⃣ 📉 OI Decay Scanner",
         "category": "FNO",
         "desc": "Option OI decay and expiry-based behavior analysis.",
         "url": "https://oidecay.streamlit.app/"
+    },
+        {
+        "name": "2️⃣📉 Option Chain by Gaurav",
+        "category": "FNO",
+        "desc": "Option chain analysis with OI, strikes, and market structure.",
+        "url": "https://optionchainbygaurav.streamlit.app/"
+    },
+
+    {
+        "name": "3️⃣📚 OI Analytics (GSY)",
+        "category": "FNO",
+        "desc": "Advanced Open Interest analysis and insights.",
+        "url": "https://oiwithgsy.streamlit.app/"
     },
     {
         "name": "☀️ Sun Cycle Analyzer",
