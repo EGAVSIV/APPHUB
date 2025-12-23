@@ -160,7 +160,7 @@ APPS = [
         "name": "🌎 USA Weather (Alt-2)",
         "category": "Weather + Commodities",
         "desc": "Secondary US weather and temperature analysis.",
-        "url": "https://usweather2.streamlit.app/"
+        "url": "https://usaweather2.streamlit.app/"
     },
 
     {
@@ -182,6 +182,18 @@ APPS = [
         "category": "Screener",
         "desc": "Back_Testing of FNO Stock with Current matching Scenario",
         "url": "https://fnobacktesting.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather (Alt-1)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather3.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather (Alt-1)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather4.streamlit.app/"
     }
 
     
