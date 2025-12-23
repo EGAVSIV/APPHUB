@@ -79,7 +79,7 @@ APPS = [
         "url": "https://liveplanetpostion.streamlit.app/"
     },
     {
-        "name": "📚 RaoSaab Research Desk",
+        "name": "🤵‍♂️ RaoSaab Research Desk",
         "category": "Screener",
         "desc": "Stock Filtration As per AS",
         "url": "https://raosaab.streamlit.app/"
@@ -127,7 +127,7 @@ APPS = [
         "url": "https://multis.streamlit.app/"
     },
     {
-        "name": "📉 OI Analytics (GSY)",
+        "name": "📚 OI Analytics (GSY)",
         "category": "FNO",
         "desc": "Advanced Open Interest analysis and insights.",
         "url": "https://oiwithgsy.streamlit.app/"
@@ -151,18 +151,37 @@ APPS = [
         "url": "https://usaweather.streamlit.app/"
     },
     {
-        "name": "🌎 USA Weather (Alt-1)",
+        "name": "1️⃣ USA Weather (Alt-1)",
         "category": "Weather + Commodities",
         "desc": "Alternative US weather forecast dashboard.",
         "url": "https://usaweather1.streamlit.app/"
     },
     {
-        "name": "🌎 USA Weather (Alt-2)",
+        "name": "2️⃣ USA Weather (Alt-2)",
         "category": "Weather + Commodities",
         "desc": "Secondary US weather and temperature analysis.",
         "url": "https://usaweather2.streamlit.app/"
     },
 
+    
+    {
+        "name": "3️⃣ USA Weather (Alt-3)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather3.streamlit.app/"
+    },
+    {
+        "name": "4️⃣ USA Weather (Alt-4)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather4.streamlit.app/"
+    },
+    {
+        "name": "🔺🔻 Back Testing FNO",
+        "category": "Screener",
+        "desc": "Back_Testing of FNO Stock with Current matching Scenario",
+        "url": "https://fnobacktesting.streamlit.app/"
+    },
     {
         "name": "🏦 NIFTY Sector Analysis",
         "category": "Screener",
@@ -171,29 +190,10 @@ APPS = [
     },
 
     {
-        "name": "🏦 Company Announcement to NSE",
+        "name": "📦 Company Announcement to NSE",
         "category": "Screener",
         "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
         "url": "https://orderbooktrack.streamlit.app/"
-    },
-
-    {
-        "name": "🏦 Back Testing FNO",
-        "category": "Screener",
-        "desc": "Back_Testing of FNO Stock with Current matching Scenario",
-        "url": "https://fnobacktesting.streamlit.app/"
-    },
-    {
-        "name": "🌎 USA Weather (Alt-1)",
-        "category": "Weather + Commodities",
-        "desc": "Alternative US weather forecast dashboard.",
-        "url": "https://usaweather3.streamlit.app/"
-    },
-    {
-        "name": "🌎 USA Weather (Alt-1)",
-        "category": "Weather + Commodities",
-        "desc": "Alternative US weather forecast dashboard.",
-        "url": "https://usaweather4.streamlit.app/"
     }
 
     
