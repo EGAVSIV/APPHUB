@@ -175,6 +175,13 @@ APPS = [
         "category": "Screener",
         "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
         "url": "https://orderbooktrack.streamlit.app/"
+    },
+
+    {
+        "name": "🏦 Back Testing FNO",
+        "category": "Screener",
+        "desc": "Back_Testing of FNO Stock with Current matching Scenario",
+        "url": "https://fnobacktesting.streamlit.app/"
     }
 
     
