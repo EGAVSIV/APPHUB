@@ -197,6 +197,36 @@ APPS = [
         "category": "Screener",
         "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
         "url": "https://orderbooktrack.streamlit.app/"
+    },
+    {
+        "name": "🫐 GAMMA_Blaster",
+        "category": "FNO",
+        "desc": "Cange is GAMMA Value Scanner",
+        "url": "https://gammascan.streamlit.app/"
+    },
+    {
+        "name": "🟢🔴 Market Depth_Screener",
+        "category": "FNO",
+        "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
+        "url": "https://marketdepthgs.streamlit.app/"
+    },
+    {
+        "name": 💹 TV_Fundmental Screener",
+        "category": "Screener",
+        "desc": "Fundamental Screener",
+        "url": "https://fundamentalgs.streamlit.app/"
+    },
+    {
+        "name": "❇️ TV_Technical Screener",
+        "category": "Screener",
+        "desc": "Technical Screener",
+        "url": "https://technicalgs.streamlit.app/"
+    },
+    {
+        "name": "✳️ TV_Hybrid Screener",
+        "category": "Screener",
+        "desc": "Hybrid Screener",
+        "url": "https://techfunda.streamlit.app/"
     }
 
     
