@@ -205,6 +205,12 @@ APPS = [
         "url": "https://gammascan.streamlit.app/"
     },
     {
+        "name": "🔆✴️ GAMMA_Blaster_2",
+        "category": "FNO",
+        "desc": "Cange is GAMMA Value Scanner",
+        "url": "https://gammascan1.streamlit.app/"
+    },
+    {
         "name": "🟢🔴 Market Depth_Screener",
         "category": "FNO",
         "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
