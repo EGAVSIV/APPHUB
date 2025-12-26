@@ -211,7 +211,7 @@ APPS = [
         "url": "https://marketdepthgs.streamlit.app/"
     },
     {
-        "name": 💹 TV_Fundmental Screener",
+        "name": "💹 TV_Fundmental Screener",
         "category": "Screener",
         "desc": "Fundamental Screener",
         "url": "https://fundamentalgs.streamlit.app/"
