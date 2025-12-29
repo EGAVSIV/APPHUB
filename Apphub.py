@@ -235,7 +235,7 @@ APPS = [
         "url": "https://techfunda.streamlit.app/"
     },
     {
-        "name": "✳️ Mutual Fund & DII Activities",
+        "name": "🏤🏪 Mutual Fund & DII Activities",
         "category": "Screener",
         "desc": "BANK,INSURANCE,MFH",
         "url": "https://mfhanalysis.streamlit.app/"
