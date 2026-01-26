@@ -241,7 +241,7 @@ APPS = [
         "url": "https://mfhanalysis.streamlit.app/"
     },
     {
-        "name": "🏤🏪 Kundali",
+        "name": "🌠 Kundali",
         "category": "Astrology",
         "desc": "जन्म कुंडली",
         "url": "https://birthhcharts.streamlit.app/"
