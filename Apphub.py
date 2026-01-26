@@ -48,22 +48,199 @@ st.divider()
 # ================================
 # APP REGISTRY (UNCHANGED)
 # ================================
-APPS = [  # <-- your full list unchanged
-    {"name": "🪐 Planetary Aspect Scanner", "category": "Astrology+Equity", "url": "https://aspectfilter.streamlit.app/"},
-    {"name": "📉 Stocks on Aspects", "category": "Astrology+Equity", "url": "https://stock-scanner-ascpect.streamlit.app/"},
-    {"name": "🔁 F&O Reversal", "category": "FNO & Astro", "url": "https://fnoreversalpnt.streamlit.app/"},
-    {"name": "🌍 Live Planet Position", "category": "Astrology", "url": "https://liveplanetpostion.streamlit.app/"},
-    {"name": "🤵 RaoSaab Desk", "category": "Screener", "url": "https://raosaab.streamlit.app/"},
-    {"name": "💰 FII–DII Tracker", "category": "Market Data", "url": "https://fiidii.streamlit.app/"},
-    {"name": "📐 Gann Cycle", "category": "GANN", "url": "https://ganncycle.streamlit.app/"},
-    {"name": "⏱️ NIFTY Time Cycle", "category": "Index", "url": "https://niftytimecycle.streamlit.app/"},
-    {"name": "⚡ Intraday Reversal", "category": "FNO & Astro", "url": "https://intradayreversal.streamlit.app/"},
-    {"name": "📊 Multi TF Screener", "category": "Screener", "url": "https://multis.streamlit.app/"},
-    {"name": "📉 OI Decay", "category": "FNO", "url": "https://oidecay.streamlit.app/"},
-    {"name": "📉 Option Chain", "category": "FNO", "url": "https://optionchainbygaurav.streamlit.app/"},
-    {"name": "📚 OI Analytics", "category": "FNO", "url": "https://oiwithgsy.streamlit.app/"},
-    {"name": "☀️ Sun Cycle", "category": "Astrology+Equity", "url": "https://suncycle.streamlit.app/"},
-    {"name": "🌠 Kundali", "category": "Astrology", "url": "https://birthhcharts.streamlit.app/"},
+APPS = [  # <-- YOUR FULL LIST (UNCHANGED)
+    {
+        "name": "🪐-☀️ Planetary Aspect Scanner",
+        "category": "Astrology+Equity",
+        "desc": "Filter planetary aspects between two dates using sidereal calculations.",
+        "url": "https://aspectfilter.streamlit.app/"
+    },
+    {
+        "name": "🪐-📉 Stocks Movement on Aspects",
+        "category": "Astrology+Equity",
+        "desc": "Astrological aspect-based stock market analysis.",
+        "url": "https://stock-scanner-ascpect.streamlit.app/"
+    },
+    {
+        "name": "🔁 F&O Reversal Price & Time ",
+        "category": "FNO & Astro",
+        "desc": "Identify high-probability reversal points in F&O stocks.",
+        "url": "https://fnoreversalpnt.streamlit.app/"
+    },
+    {
+        "name": "🌍-🪐-☀️ Live Planet Position",
+        "category": "Astrology",
+        "desc": "Real-time planetary positions with sidereal reference.",
+        "url": "https://liveplanetpostion.streamlit.app/"
+    },
+    {
+        "name": "🤵‍♂️ RaoSaab Research Desk",
+        "category": "Screener",
+        "desc": "Stock Filtration As per AS",
+        "url": "https://raosaab.streamlit.app/"
+    },
+    {
+        "name": "💰 FII–DII Activity Tracker",
+        "category": "Market Data",
+        "desc": "Track daily, weekly and monthly FII–DII activity.",
+        "url": "https://fiidii.streamlit.app/"
+    },
+    {
+        "name": "🔄 F&O Price Cycle",
+        "category": "FNO",
+        "desc": "Price cycle based on Weekly Close 3-69 in F&O instruments.",
+        "url": "https://fnopricecycle.streamlit.app/"
+    },
+    {
+        "name": "📐 Gann Cycle Analyzer",
+        "category": "GANN",
+        "desc": "Gann-based time and price cycle analysis.",
+        "url": "https://ganncycle.streamlit.app/"
+    },
+    {
+        "name": "⏱️ NIFTY Time Cycle",
+        "category": "Index",
+        "desc": "Time-cycle based forecasting for NIFTY.",
+        "url": "https://niftytimecycle.streamlit.app/"
+    },
+    {
+        "name": "⚡ Intraday Reversal Scanner",
+        "category": "FNO & Astro",
+        "desc": "Detect intraday reversal setups with precision.",
+        "url": "https://intradayreversal.streamlit.app/"
+    },
+    {
+        "name": "📰 Market News Aggregator",
+        "category": "News",
+        "desc": "All important market and global news at one place.",
+        "url": "https://allnews.streamlit.app/"
+    },
+    {
+        "name": "📊 Multi-Timeframe Stock Screener",
+        "category": "Screener",
+        "desc": "Multiple Scan Stock Selection",
+        "url": "https://multis.streamlit.app/"
+    },
+    {
+        "name": "1️⃣ 📉 OI Decay Scanner",
+        "category": "FNO",
+        "desc": "Option OI decay and expiry-based behavior analysis.",
+        "url": "https://oidecay.streamlit.app/"
+    },
+    {
+        "name": "2️⃣📉 Option Chain by Gaurav",
+        "category": "FNO",
+        "desc": "Option chain analysis with OI, strikes, and market structure.",
+        "url": "https://optionchainbygaurav.streamlit.app/"
+    },
+    {
+        "name": "3️⃣📚 OI Analytics (GSY)",
+        "category": "FNO",
+        "desc": "Advanced Open Interest analysis and insights.",
+        "url": "https://oiwithgsy.streamlit.app/"
+    },
+    {
+        "name": "☀️ Sun Cycle Analyzer",
+        "category": "Astrology+Equity",
+        "desc": "Solar cycle based timing and trend insights.",
+        "url": "https://suncycle.streamlit.app/"
+    },
+    {
+        "name": "🌎 USA Weather & Energy Impact",
+        "category": "Weather + Commodities",
+        "desc": "US weather analysis with energy and commodity impact.",
+        "url": "https://usaweather.streamlit.app/"
+    },
+    {
+        "name": "1️⃣ USA Weather (Alt-1)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather1.streamlit.app/"
+    },
+    {
+        "name": "2️⃣ USA Weather (Alt-2)",
+        "category": "Weather + Commodities",
+        "desc": "Secondary US weather and temperature analysis.",
+        "url": "https://usaweather2.streamlit.app/"
+    },
+    {
+        "name": "3️⃣ USA Weather (Alt-3)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather3.streamlit.app/"
+    },
+    {
+        "name": "4️⃣ USA Weather (Alt-4)",
+        "category": "Weather + Commodities",
+        "desc": "Alternative US weather forecast dashboard.",
+        "url": "https://usaweather4.streamlit.app/"
+    },
+    {
+        "name": "🔺🔻 Back Testing FNO",
+        "category": "Screener",
+        "desc": "Back testing of FNO stocks with current scenarios.",
+        "url": "https://fnobacktesting.streamlit.app/"
+    },
+    {
+        "name": "🏦 NIFTY Sector Analysis",
+        "category": "Screener",
+        "desc": "Sector analysis with rotation.",
+        "url": "https://sectoranalysis.streamlit.app/"
+    },
+    {
+        "name": "📦 Company Announcement to NSE",
+        "category": "Screener",
+        "desc": "Orders, volume spike, management changes.",
+        "url": "https://orderbooktrack.streamlit.app/"
+    },
+    {
+        "name": "🫐 GAMMA_Blaster",
+        "category": "FNO",
+        "desc": "Gamma value scanner.",
+        "url": "https://gammascan.streamlit.app/"
+    },
+    {
+        "name": "🔆✴️ GAMMA_Blaster_2",
+        "category": "FNO",
+        "desc": "Advanced gamma scanner.",
+        "url": "https://gammascan1.streamlit.app/"
+    },
+    {
+        "name": "🟢🔴 Market Depth_Screener",
+        "category": "FNO",
+        "desc": "Order flow and market depth.",
+        "url": "https://marketdepthgs.streamlit.app/"
+    },
+    {
+        "name": "💹 TV_Fundmental Screener",
+        "category": "Screener",
+        "desc": "Fundamental screener.",
+        "url": "https://fundamentalgs.streamlit.app/"
+    },
+    {
+        "name": "❇️ TV_Technical Screener",
+        "category": "Screener",
+        "desc": "Technical screener.",
+        "url": "https://technicalgs.streamlit.app/"
+    },
+    {
+        "name": "✳️ TV_Hybrid Screener",
+        "category": "Screener",
+        "desc": "Hybrid tech + funda screener.",
+        "url": "https://techfunda.streamlit.app/"
+    },
+    {
+        "name": "🏤🏪 Mutual Fund & DII Activities",
+        "category": "Screener",
+        "desc": "MF, Insurance, DII activity.",
+        "url": "https://mfhanalysis.streamlit.app/"
+    },
+    {
+        "name": "🌠 Kundali",
+        "category": "Astrology",
+        "desc": "जन्म कुंडली",
+        "url": "https://birthhcharts.streamlit.app/"
+    }
 ]
 
 # ================================
@@ -83,9 +260,14 @@ def is_live(url):
 
 
 # ================================
-# DISPLAY IN 5-COLUMN SQUARE GRID
+# SORT ALPHABETICALLY BY NAME
 # ================================
-cols = st.columns(5)
+APPS = sorted(APPS, key=lambda x: x["name"].lower())
+
+# ================================
+# DISPLAY IN 8 COLUMNS
+# ================================
+cols = st.columns(8)
 col_index = 0
 
 for app in APPS:
@@ -95,20 +277,21 @@ for app in APPS:
         continue
 
     with cols[col_index]:
-        st.markdown("### " + app["name"])
-        st.write(" ")
+        st.markdown(f"**{app['name']}**")
+        st.caption(app["category"])
+        st.write(app["desc"])
+
         if is_live(app["url"]):
             st.success("🟢 Live")
         else:
             st.error("🔴 Down")
 
         st.link_button("🚀 Open", app["url"])
-
         st.markdown("---")
 
     col_index += 1
-    if col_index == 5:
-        cols = st.columns(5)
+    if col_index == 8:
+        cols = st.columns(8)
         col_index = 0
 
 
@@ -117,9 +300,9 @@ for app in APPS:
 # ================================
 st.markdown("""
 ---
-**Designed by:**  
-**Gaurav Singh Yadav**  
-Built with ❤️ | Energy • Commodity • Quant Intelligence  
+**Designed by:-  
+Gaurav Singh Yadav**  
+Built with ❤️ | Energy • Commodity | Quant Intelligence  
 📱 +91-8003994518  
 📧 yadav.gauravsingh@gmail.com
 """)
