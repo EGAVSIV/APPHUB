@@ -46,42 +46,38 @@ st.caption("Single login • All tools • Live status")
 st.divider()
 
 # ================================
-# CSS FOR SMALL SQUARE TILES
+# COMPACT TILE CSS (KEY CHANGE)
 # ================================
 st.markdown("""
 <style>
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
 }
 
 .app-card {
     background: #0e1117;
     border: 1px solid #262730;
-    border-radius: 12px;
-    padding: 14px;
-    height: 180px;
+    border-radius: 10px;
+    padding: 8px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .app-title {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.app-desc {
-    font-size: 12px;
-    color: #b0b3b8;
+    line-height: 1.2;
 }
 
 .app-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 11px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -90,29 +86,29 @@ st.markdown("""
 # APP REGISTRY
 # ================================
 APPS = [
-    {"name": "🪐 Planetary Aspect Scanner","category": "Astrology+Equity","desc": "Planetary aspect filter","url": "https://aspectfilter.streamlit.app/"},
-    {"name": "📉 Stocks on Aspects","category": "Astrology+Equity","desc": "Astro-based stock analysis","url": "https://stock-scanner-ascpect.streamlit.app/"},
-    {"name": "🔁 F&O Reversal","category": "FNO","desc": "Price & time reversal zones","url": "https://fnoreversalpnt.streamlit.app/"},
-    {"name": "🌍 Live Planet Position","category": "Astrology","desc": "Real-time planet positions","url": "https://liveplanetpostion.streamlit.app/"},
-    {"name": "🤵 RaoSaab Desk","category": "Screener","desc": "AS-based filtration","url": "https://raosaab.streamlit.app/"},
-    {"name": "💰 FII–DII Tracker","category": "Market Data","desc": "FII & DII activity","url": "https://fiidii.streamlit.app/"},
-    {"name": "📐 Gann Cycle","category": "GANN","desc": "Time & price cycles","url": "https://ganncycle.streamlit.app/"},
-    {"name": "⏱ NIFTY Time Cycle","category": "Index","desc": "NIFTY forecasting","url": "https://niftytimecycle.streamlit.app/"},
-    {"name": "⚡ Intraday Reversal","category": "FNO","desc": "Intraday setups","url": "https://intradayreversal.streamlit.app/"},
-    {"name": "📊 Multi TF Screener","category": "Screener","desc": "Multi-timeframe scans","url": "https://multis.streamlit.app/"},
-    {"name": "📉 OI Decay","category": "FNO","desc": "OI decay analysis","url": "https://oidecay.streamlit.app/"},
-    {"name": "📉 Option Chain","category": "FNO","desc": "OI & strikes","url": "https://optionchainbygaurav.streamlit.app/"},
-    {"name": "📚 OI Analytics","category": "FNO","desc": "Advanced OI insights","url": "https://oiwithgsy.streamlit.app/"},
-    {"name": "☀️ Sun Cycle","category": "Astrology","desc": "Solar cycle timing","url": "https://suncycle.streamlit.app/"},
-    {"name": "🌎 USA Weather","category": "Weather","desc": "Weather & energy impact","url": "https://usaweather.streamlit.app/"},
-    {"name": "🔺🔻 FNO Backtesting","category": "Screener","desc": "Scenario backtesting","url": "https://fnobacktesting.streamlit.app/"},
-    {"name": "🏦 Sector Analysis","category": "Screener","desc": "Sector rotation","url": "https://sectoranalysis.streamlit.app/"},
-    {"name": "🫐 Gamma Blaster","category": "FNO","desc": "Gamma scanner","url": "https://gammascan.streamlit.app/"},
-    {"name": "🟢🔴 Market Depth","category": "FNO","desc": "Order flow","url": "https://marketdepthgs.streamlit.app/"},
-    {"name": "💹 TV Fundamental","category": "Screener","desc": "Fundamental screener","url": "https://fundamentalgs.streamlit.app/"},
-    {"name": "❇️ TV Technical","category": "Screener","desc": "Technical screener","url": "https://technicalgs.streamlit.app/"},
-    {"name": "✳️ Hybrid Screener","category": "Screener","desc": "Tech + funda","url": "https://techfunda.streamlit.app/"},
-    {"name": "🌠 Kundali","category": "Astrology","desc": "Birth chart","url": "https://birthhcharts.streamlit.app/"},
+    {"name": "🪐 Planetary Aspect","category": "Astrology+Equity","url": "https://aspectfilter.streamlit.app/"},
+    {"name": "📉 Stocks on Aspects","category": "Astrology+Equity","url": "https://stock-scanner-ascpect.streamlit.app/"},
+    {"name": "🔁 F&O Reversal","category": "FNO","url": "https://fnoreversalpnt.streamlit.app/"},
+    {"name": "🌍 Live Planet","category": "Astrology","url": "https://liveplanetpostion.streamlit.app/"},
+    {"name": "🤵 RaoSaab Desk","category": "Screener","url": "https://raosaab.streamlit.app/"},
+    {"name": "💰 FII–DII","category": "Market Data","url": "https://fiidii.streamlit.app/"},
+    {"name": "📐 Gann Cycle","category": "GANN","url": "https://ganncycle.streamlit.app/"},
+    {"name": "⏱ NIFTY Cycle","category": "Index","url": "https://niftytimecycle.streamlit.app/"},
+    {"name": "⚡ Intraday","category": "FNO","url": "https://intradayreversal.streamlit.app/"},
+    {"name": "📊 Multi TF","category": "Screener","url": "https://multis.streamlit.app/"},
+    {"name": "📉 OI Decay","category": "FNO","url": "https://oidecay.streamlit.app/"},
+    {"name": "📉 Option Chain","category": "FNO","url": "https://optionchainbygaurav.streamlit.app/"},
+    {"name": "📚 OI Analytics","category": "FNO","url": "https://oiwithgsy.streamlit.app/"},
+    {"name": "☀️ Sun Cycle","category": "Astrology","url": "https://suncycle.streamlit.app/"},
+    {"name": "🌎 USA Weather","category": "Weather","url": "https://usaweather.streamlit.app/"},
+    {"name": "🔺🔻 Backtesting","category": "Screener","url": "https://fnobacktesting.streamlit.app/"},
+    {"name": "🏦 Sector","category": "Screener","url": "https://sectoranalysis.streamlit.app/"},
+    {"name": "🫐 Gamma","category": "FNO","url": "https://gammascan.streamlit.app/"},
+    {"name": "🟢🔴 Market Depth","category": "FNO","url": "https://marketdepthgs.streamlit.app/"},
+    {"name": "💹 Fundamental","category": "Screener","url": "https://fundamentalgs.streamlit.app/"},
+    {"name": "❇️ Technical","category": "Screener","url": "https://technicalgs.streamlit.app/"},
+    {"name": "✳️ Hybrid","category": "Screener","url": "https://techfunda.streamlit.app/"},
+    {"name": "🌠 Kundali","category": "Astrology","url": "https://birthhcharts.streamlit.app/"},
 ]
 
 # ================================
@@ -126,13 +122,12 @@ category = st.selectbox(
 
 def is_live(url):
     try:
-        r = requests.get(url, timeout=3)
-        return r.status_code == 200
+        return requests.get(url, timeout=2).status_code == 200
     except:
         return False
 
 # ================================
-# DISPLAY GRID
+# DISPLAY TILED VIEW
 # ================================
 st.markdown('<div class="app-grid">', unsafe_allow_html=True)
 
@@ -142,19 +137,14 @@ for app in APPS:
     if category != "All" and app["category"] != category:
         continue
 
-    live = is_live(app["url"])
-    status = "🟢 Live" if live else "🔴 Down"
+    status = "🟢" if is_live(app["url"]) else "🔴"
 
     st.markdown(f"""
     <div class="app-card">
-        <div>
-            <div class="app-title">{app["name"]}</div>
-            <div class="app-desc">{app["category"]}</div>
-            <div class="app-desc">{app["desc"]}</div>
-        </div>
+        <div class="app-title">{app["name"]}</div>
         <div class="app-footer">
             <span>{status}</span>
-            <a href="{app["url"]}" target="_blank">🚀 Open</a>
+            <a href="{app["url"]}" target="_blank">Open</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -166,9 +156,6 @@ st.markdown('</div>', unsafe_allow_html=True)
 # ================================
 st.markdown("""
 ---
-**Designed by:**  
-**Gaurav Singh Yadav**  
+**Designed by Gaurav Singh Yadav**  
 Built with ❤️ | Energy • Commodity • Quant  
-📱 +91-8003994518  
-📧 yadav.gauravsingh@gmail.com
 """)
