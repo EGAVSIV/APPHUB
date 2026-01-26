@@ -239,6 +239,12 @@ APPS = [
         "category": "Screener",
         "desc": "BANK,INSURANCE,MFH",
         "url": "https://mfhanalysis.streamlit.app/"
+    },
+    {
+        "name": "🏤🏪 Kundali",
+        "category": "Astrology",
+        "desc": "जन्म कुंडली",
+        "url": "https://birthhcharts.streamlit.app/"
     }
 
     
