@@ -3,7 +3,7 @@ import requests
 import hashlib
 
 # ================================
-# LOGIN FUNCTION (SAME FILE)
+# LOGIN FUNCTION
 # ================================
 def check_login():
     if "logged_in" not in st.session_state:
@@ -12,7 +12,7 @@ def check_login():
     if st.session_state.logged_in:
         return True
 
-    st.title("🙏 Welcome To Gs World 🔐 Login Required to Aceess this ")
+    st.title("🙏 Welcome To Gs World 🔐 Login Required to Access")
 
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -28,6 +28,7 @@ def check_login():
             st.error("Invalid credentials")
 
     st.stop()
+
 
 # ================================
 # PAGE CONFIG
@@ -45,216 +46,79 @@ st.caption("Single login • All tools • Live status")
 st.divider()
 
 # ================================
+# CSS FOR SMALL SQUARE TILES
+# ================================
+st.markdown("""
+<style>
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.app-card {
+    background: #0e1117;
+    border: 1px solid #262730;
+    border-radius: 12px;
+    padding: 14px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.app-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.app-desc {
+    font-size: 12px;
+    color: #b0b3b8;
+}
+
+.app-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# ================================
 # APP REGISTRY
 # ================================
 APPS = [
-    {
-        "name": "🪐-☀️ Planetary Aspect Scanner",
-        "category": "Astrology+Equity",
-        "desc": "Filter planetary aspects between two dates using sidereal calculations.",
-        "url": "https://aspectfilter.streamlit.app/"
-    },
-    {
-        "name": "🪐-📉 Stocks Movement on Aspects",
-        "category": "Astrology+Equity",
-        "desc": "Astrological aspect-based stock market analysis.",
-        "url": "https://stock-scanner-ascpect.streamlit.app/"
-    },
-    {
-        "name": "🔁 F&O Reversal Price & Time ",
-        "category": "FNO & Astro",
-        "desc": "Identify high-probability reversal points in F&O stocks.",
-        "url": "https://fnoreversalpnt.streamlit.app/"
-    },
-
-    {
-        "name": "🌍-🪐-☀️ Live Planet Position",
-        "category": "Astrology",
-        "desc": "Real-time planetary positions with sidereal reference.",
-        "url": "https://liveplanetpostion.streamlit.app/"
-    },
-    {
-        "name": "🤵‍♂️ RaoSaab Research Desk",
-        "category": "Screener",
-        "desc": "Stock Filtration As per AS",
-        "url": "https://raosaab.streamlit.app/"
-    },
-    {
-        "name": "💰 FII–DII Activity Tracker",
-        "category": "Market Data",
-        "desc": "Track daily, weekly and monthly FII–DII activity.",
-        "url": "https://fiidii.streamlit.app/"
-    },
-    {
-        "name": "🔄 F&O Price Cycle",
-        "category": "FNO",
-        "desc": "Price cycle based on Weekly Close 3-69 in F&O instruments.",
-        "url": "https://fnopricecycle.streamlit.app/"
-    },
-    {
-        "name": "📐 Gann Cycle Analyzer",
-        "category": "GANN",
-        "desc": "Gann-based time and price cycle analysis.",
-        "url": "https://ganncycle.streamlit.app/"
-    },
-    {
-        "name": "⏱️ NIFTY Time Cycle",
-        "category": "Index",
-        "desc": "Time-cycle based forecasting for NIFTY.",
-        "url": "https://niftytimecycle.streamlit.app/"
-    },
-    {
-        "name": "⚡ Intraday Reversal Scanner",
-        "category": "FNO & Astro",
-        "desc": "Detect intraday reversal setups with precision.",
-        "url": "https://intradayreversal.streamlit.app/"
-    },
-    {
-        "name": "📰 Market News Aggregator",
-        "category": "News",
-        "desc": "All important market and global news at one place.",
-        "url": "https://allnews.streamlit.app/"
-    },
-    {
-        "name": "📊 Multi-Timeframe Stock Screener",
-        "category": "Screener",
-        "desc": "Multiple Scan Stock Selection",
-        "url": "https://multis.streamlit.app/"
-    },
-    
-    {
-        "name": "1️⃣ 📉 OI Decay Scanner",
-        "category": "FNO",
-        "desc": "Option OI decay and expiry-based behavior analysis.",
-        "url": "https://oidecay.streamlit.app/"
-    },
-        {
-        "name": "2️⃣📉 Option Chain by Gaurav",
-        "category": "FNO",
-        "desc": "Option chain analysis with OI, strikes, and market structure.",
-        "url": "https://optionchainbygaurav.streamlit.app/"
-    },
-
-    {
-        "name": "3️⃣📚 OI Analytics (GSY)",
-        "category": "FNO",
-        "desc": "Advanced Open Interest analysis and insights.",
-        "url": "https://oiwithgsy.streamlit.app/"
-    },
-    {
-        "name": "☀️ Sun Cycle Analyzer",
-        "category": "Astrology+Equity",
-        "desc": "Solar cycle based timing and trend insights.",
-        "url": "https://suncycle.streamlit.app/"
-    },
-    {
-        "name": "🌎 USA Weather & Energy Impact",
-        "category": "Weather + Commodities",
-        "desc": "US weather analysis with energy and commodity impact.",
-        "url": "https://usaweather.streamlit.app/"
-    },
-    {
-        "name": "1️⃣ USA Weather (Alt-1)",
-        "category": "Weather + Commodities",
-        "desc": "Alternative US weather forecast dashboard.",
-        "url": "https://usaweather1.streamlit.app/"
-    },
-    {
-        "name": "2️⃣ USA Weather (Alt-2)",
-        "category": "Weather + Commodities",
-        "desc": "Secondary US weather and temperature analysis.",
-        "url": "https://usaweather2.streamlit.app/"
-    },
-
-    
-    {
-        "name": "3️⃣ USA Weather (Alt-3)",
-        "category": "Weather + Commodities",
-        "desc": "Alternative US weather forecast dashboard.",
-        "url": "https://usaweather3.streamlit.app/"
-    },
-    {
-        "name": "4️⃣ USA Weather (Alt-4)",
-        "category": "Weather + Commodities",
-        "desc": "Alternative US weather forecast dashboard.",
-        "url": "https://usaweather4.streamlit.app/"
-    },
-    {
-        "name": "🔺🔻 Back Testing FNO",
-        "category": "Screener",
-        "desc": "Back_Testing of FNO Stock with Current matching Scenario",
-        "url": "https://fnobacktesting.streamlit.app/"
-    },
-    {
-        "name": "🏦 NIFTY Sector Analysis",
-        "category": "Screener",
-        "desc": "Sector anlysis with sector rotation",
-        "url": "https://sectoranalysis.streamlit.app/"
-    },
-
-    {
-        "name": "📦 Company Announcement to NSE",
-        "category": "Screener",
-        "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
-        "url": "https://orderbooktrack.streamlit.app/"
-    },
-    {
-        "name": "🫐 GAMMA_Blaster",
-        "category": "FNO",
-        "desc": "Cange is GAMMA Value Scanner",
-        "url": "https://gammascan.streamlit.app/"
-    },
-    {
-        "name": "🔆✴️ GAMMA_Blaster_2",
-        "category": "FNO",
-        "desc": "Cange is GAMMA Value Scanner",
-        "url": "https://gammascan1.streamlit.app/"
-    },
-    {
-        "name": "🟢🔴 Market Depth_Screener",
-        "category": "FNO",
-        "desc": "Compnies Getting Order , Volume Spike, Mangment change Data",
-        "url": "https://marketdepthgs.streamlit.app/"
-    },
-    {
-        "name": "💹 TV_Fundmental Screener",
-        "category": "Screener",
-        "desc": "Fundamental Screener",
-        "url": "https://fundamentalgs.streamlit.app/"
-    },
-    {
-        "name": "❇️ TV_Technical Screener",
-        "category": "Screener",
-        "desc": "Technical Screener",
-        "url": "https://technicalgs.streamlit.app/"
-    },
-    {
-        "name": "✳️ TV_Hybrid Screener",
-        "category": "Screener",
-        "desc": "Hybrid Screener",
-        "url": "https://techfunda.streamlit.app/"
-    },
-    {
-        "name": "🏤🏪 Mutual Fund & DII Activities",
-        "category": "Screener",
-        "desc": "BANK,INSURANCE,MFH",
-        "url": "https://mfhanalysis.streamlit.app/"
-    },
-    {
-        "name": "🌠 Kundali",
-        "category": "Astrology",
-        "desc": "जन्म कुंडली",
-        "url": "https://birthhcharts.streamlit.app/"
-    }
-
-    
+    {"name": "🪐 Planetary Aspect Scanner","category": "Astrology+Equity","desc": "Planetary aspect filter","url": "https://aspectfilter.streamlit.app/"},
+    {"name": "📉 Stocks on Aspects","category": "Astrology+Equity","desc": "Astro-based stock analysis","url": "https://stock-scanner-ascpect.streamlit.app/"},
+    {"name": "🔁 F&O Reversal","category": "FNO","desc": "Price & time reversal zones","url": "https://fnoreversalpnt.streamlit.app/"},
+    {"name": "🌍 Live Planet Position","category": "Astrology","desc": "Real-time planet positions","url": "https://liveplanetpostion.streamlit.app/"},
+    {"name": "🤵 RaoSaab Desk","category": "Screener","desc": "AS-based filtration","url": "https://raosaab.streamlit.app/"},
+    {"name": "💰 FII–DII Tracker","category": "Market Data","desc": "FII & DII activity","url": "https://fiidii.streamlit.app/"},
+    {"name": "📐 Gann Cycle","category": "GANN","desc": "Time & price cycles","url": "https://ganncycle.streamlit.app/"},
+    {"name": "⏱ NIFTY Time Cycle","category": "Index","desc": "NIFTY forecasting","url": "https://niftytimecycle.streamlit.app/"},
+    {"name": "⚡ Intraday Reversal","category": "FNO","desc": "Intraday setups","url": "https://intradayreversal.streamlit.app/"},
+    {"name": "📊 Multi TF Screener","category": "Screener","desc": "Multi-timeframe scans","url": "https://multis.streamlit.app/"},
+    {"name": "📉 OI Decay","category": "FNO","desc": "OI decay analysis","url": "https://oidecay.streamlit.app/"},
+    {"name": "📉 Option Chain","category": "FNO","desc": "OI & strikes","url": "https://optionchainbygaurav.streamlit.app/"},
+    {"name": "📚 OI Analytics","category": "FNO","desc": "Advanced OI insights","url": "https://oiwithgsy.streamlit.app/"},
+    {"name": "☀️ Sun Cycle","category": "Astrology","desc": "Solar cycle timing","url": "https://suncycle.streamlit.app/"},
+    {"name": "🌎 USA Weather","category": "Weather","desc": "Weather & energy impact","url": "https://usaweather.streamlit.app/"},
+    {"name": "🔺🔻 FNO Backtesting","category": "Screener","desc": "Scenario backtesting","url": "https://fnobacktesting.streamlit.app/"},
+    {"name": "🏦 Sector Analysis","category": "Screener","desc": "Sector rotation","url": "https://sectoranalysis.streamlit.app/"},
+    {"name": "🫐 Gamma Blaster","category": "FNO","desc": "Gamma scanner","url": "https://gammascan.streamlit.app/"},
+    {"name": "🟢🔴 Market Depth","category": "FNO","desc": "Order flow","url": "https://marketdepthgs.streamlit.app/"},
+    {"name": "💹 TV Fundamental","category": "Screener","desc": "Fundamental screener","url": "https://fundamentalgs.streamlit.app/"},
+    {"name": "❇️ TV Technical","category": "Screener","desc": "Technical screener","url": "https://technicalgs.streamlit.app/"},
+    {"name": "✳️ Hybrid Screener","category": "Screener","desc": "Tech + funda","url": "https://techfunda.streamlit.app/"},
+    {"name": "🌠 Kundali","category": "Astrology","desc": "Birth chart","url": "https://birthhcharts.streamlit.app/"},
 ]
-
 
 # ================================
 # SEARCH & FILTER
 # ================================
-search = st.text_input("🔍 Search app")
+search = st.text_input("🔍 Search App")
 category = st.selectbox(
     "🧭 Category",
     ["All"] + sorted(set(a["category"] for a in APPS))
@@ -262,45 +126,49 @@ category = st.selectbox(
 
 def is_live(url):
     try:
-        r = requests.get(url, timeout=5)
+        r = requests.get(url, timeout=3)
         return r.status_code == 200
     except:
         return False
 
 # ================================
-# DISPLAY APPS
+# DISPLAY GRID
 # ================================
+st.markdown('<div class="app-grid">', unsafe_allow_html=True)
+
 for app in APPS:
     if search.lower() not in app["name"].lower():
         continue
     if category != "All" and app["category"] != category:
         continue
 
-    col1, col2, col3 = st.columns([4, 2, 2])
+    live = is_live(app["url"])
+    status = "🟢 Live" if live else "🔴 Down"
 
-    with col1:
-        st.subheader(app["name"])
-        st.write(app["desc"])
-        st.caption(f"Category: {app['category']}")
+    st.markdown(f"""
+    <div class="app-card">
+        <div>
+            <div class="app-title">{app["name"]}</div>
+            <div class="app-desc">{app["category"]}</div>
+            <div class="app-desc">{app["desc"]}</div>
+        </div>
+        <div class="app-footer">
+            <span>{status}</span>
+            <a href="{app["url"]}" target="_blank">🚀 Open</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col2:
-        if is_live(app["url"]):
-            st.success("🟢 Live")
-        else:
-            st.error("🔴 Down")
+st.markdown('</div>', unsafe_allow_html=True)
 
-    with col3:
-        st.link_button("🚀 Open", app["url"])
-
-    st.divider()
-
-
+# ================================
+# FOOTER
+# ================================
 st.markdown("""
 ---
-**Designed by:-  
-Gaurav Singh Yadav**   
-🩷💛🩵💙🩶💜🤍🤎💖  Built With Love 🫶  
-Energy | Commodity | Quant Intelligence 📶  
-📱 +91-8003994518 〽️   
-📧 yadav.gauravsingh@gmail.com ™️
+**Designed by:**  
+**Gaurav Singh Yadav**  
+Built with ❤️ | Energy • Commodity • Quant  
+📱 +91-8003994518  
+📧 yadav.gauravsingh@gmail.com
 """)
