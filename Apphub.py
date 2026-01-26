@@ -12,7 +12,7 @@ def check_login():
     if st.session_state.logged_in:
         return True
 
-    st.title("🙏 Welcome To Gs World 🔐 Login Required to Access")
+    st.title("🙏 Welcome To Gs World 🔐 Login Required")
 
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -46,38 +46,46 @@ st.caption("Single login • All tools • Live status")
 st.divider()
 
 # ================================
-# COMPACT TILE CSS (KEY CHANGE)
+# CSS — MATCH ATTACHED IMAGE
 # ================================
 st.markdown("""
 <style>
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
 }
 
-.app-card {
-    background: #0e1117;
-    border: 1px solid #262730;
-    border-radius: 10px;
-    padding: 8px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.app-tile {
+    background: linear-gradient(180deg, #0c0f14, #090c11);
+    border: 1px solid #1f2430;
+    border-radius: 12px;
+    height: 170px;
+    padding: 14px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.app-tile:hover {
+    transform: translateY(-3px);
+    border-color: #2b3242;
 }
 
 .app-title {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
-    line-height: 1.2;
+    color: #ffffff;
 }
 
-.app-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
+.status-dot {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3ddc84;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -86,40 +94,20 @@ st.markdown("""
 # APP REGISTRY
 # ================================
 APPS = [
-    {"name": "🪐 Planetary Aspect","category": "Astrology+Equity","url": "https://aspectfilter.streamlit.app/"},
-    {"name": "📉 Stocks on Aspects","category": "Astrology+Equity","url": "https://stock-scanner-ascpect.streamlit.app/"},
-    {"name": "🔁 F&O Reversal","category": "FNO","url": "https://fnoreversalpnt.streamlit.app/"},
-    {"name": "🌍 Live Planet","category": "Astrology","url": "https://liveplanetpostion.streamlit.app/"},
-    {"name": "🤵 RaoSaab Desk","category": "Screener","url": "https://raosaab.streamlit.app/"},
-    {"name": "💰 FII–DII","category": "Market Data","url": "https://fiidii.streamlit.app/"},
-    {"name": "📐 Gann Cycle","category": "GANN","url": "https://ganncycle.streamlit.app/"},
-    {"name": "⏱ NIFTY Cycle","category": "Index","url": "https://niftytimecycle.streamlit.app/"},
-    {"name": "⚡ Intraday","category": "FNO","url": "https://intradayreversal.streamlit.app/"},
-    {"name": "📊 Multi TF","category": "Screener","url": "https://multis.streamlit.app/"},
-    {"name": "📉 OI Decay","category": "FNO","url": "https://oidecay.streamlit.app/"},
-    {"name": "📉 Option Chain","category": "FNO","url": "https://optionchainbygaurav.streamlit.app/"},
-    {"name": "📚 OI Analytics","category": "FNO","url": "https://oiwithgsy.streamlit.app/"},
-    {"name": "☀️ Sun Cycle","category": "Astrology","url": "https://suncycle.streamlit.app/"},
-    {"name": "🌎 USA Weather","category": "Weather","url": "https://usaweather.streamlit.app/"},
-    {"name": "🔺🔻 Backtesting","category": "Screener","url": "https://fnobacktesting.streamlit.app/"},
-    {"name": "🏦 Sector","category": "Screener","url": "https://sectoranalysis.streamlit.app/"},
-    {"name": "🫐 Gamma","category": "FNO","url": "https://gammascan.streamlit.app/"},
-    {"name": "🟢🔴 Market Depth","category": "FNO","url": "https://marketdepthgs.streamlit.app/"},
-    {"name": "💹 Fundamental","category": "Screener","url": "https://fundamentalgs.streamlit.app/"},
-    {"name": "❇️ Technical","category": "Screener","url": "https://technicalgs.streamlit.app/"},
-    {"name": "✳️ Hybrid","category": "Screener","url": "https://techfunda.streamlit.app/"},
-    {"name": "🌠 Kundali","category": "Astrology","url": "https://birthhcharts.streamlit.app/"},
+    {"name": "🪐 Planetary Aspect", "url": "https://aspectfilter.streamlit.app/"},
+    {"name": "📉 Stocks on Aspects", "url": "https://stock-scanner-ascpect.streamlit.app/"},
+    {"name": "🌍 Live Planet", "url": "https://liveplanetpostion.streamlit.app/"},
+    {"name": "🔁 F&O Reversal", "url": "https://fnoreversalpnt.streamlit.app/"},
+    {"name": "🤵 RaoSaab Desk", "url": "https://raosaab.streamlit.app/"},
+    {"name": "💰 FII–DII Tracker", "url": "https://fiidii.streamlit.app/"},
+    {"name": "📐 Gann Cycle", "url": "https://ganncycle.streamlit.app/"},
+    {"name": "⚡ Intraday Reversal", "url": "https://intradayreversal.streamlit.app/"},
+    {"name": "📊 Multi TF Screener", "url": "https://multis.streamlit.app/"},
 ]
 
 # ================================
-# SEARCH & FILTER
+# LIVE CHECK
 # ================================
-search = st.text_input("🔍 Search App")
-category = st.selectbox(
-    "🧭 Category",
-    ["All"] + sorted(set(a["category"] for a in APPS))
-)
-
 def is_live(url):
     try:
         return requests.get(url, timeout=2).status_code == 200
@@ -127,26 +115,21 @@ def is_live(url):
         return False
 
 # ================================
-# DISPLAY TILED VIEW
+# TILE RENDER
 # ================================
 st.markdown('<div class="app-grid">', unsafe_allow_html=True)
 
 for app in APPS:
-    if search.lower() not in app["name"].lower():
+    if not is_live(app["url"]):
         continue
-    if category != "All" and app["category"] != category:
-        continue
-
-    status = "🟢" if is_live(app["url"]) else "🔴"
 
     st.markdown(f"""
-    <div class="app-card">
-        <div class="app-title">{app["name"]}</div>
-        <div class="app-footer">
-            <span>{status}</span>
-            <a href="{app["url"]}" target="_blank">Open</a>
+    <a href="{app["url"]}" target="_blank" style="text-decoration:none;">
+        <div class="app-tile">
+            <div class="app-title">{app["name"]}</div>
+            <div class="status-dot"></div>
         </div>
-    </div>
+    </a>
     """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
@@ -157,5 +140,5 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown("""
 ---
 **Designed by Gaurav Singh Yadav**  
-Built with ❤️ | Energy • Commodity • Quant  
+Built with ❤️ | Energy • Commodity • Quant
 """)
