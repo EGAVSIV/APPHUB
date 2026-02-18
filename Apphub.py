@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import hashlib
+import base64
 
 # ================================
 # PAGE CONFIG
@@ -10,6 +11,36 @@ st.set_page_config(
     page_icon="🪐",
     layout="wide"
 )
+def set_bg_image(image_path: str):
+    with open(image_path, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# =====================================================
+# APPLY BACKGROUND
+# =====================================================
+
+BASE_PATH = os.path.dirname(__file__)
+bg_path = os.path.join(BASE_PATH, "Assets", "BG11.png")
+
+if os.path.exists(bg_path):
+    set_bg_image(bg_path)
+else:
+    st.warning(f"Background not found at: {bg_path}")
 
 # ================================
 # GLOBAL CUSTOM CSS (CONTRAST TUNED)
