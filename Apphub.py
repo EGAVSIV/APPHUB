@@ -21,7 +21,9 @@ def set_bg_image(image_path: str):
         f"""
         <style>
         .stApp {{
-            background-image: url("data:image/png;base64,{encoded}");
+            background:
+                radial-gradient(circle at top left, #050816 0, #020617 45%, #000000 100%),
+                url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
