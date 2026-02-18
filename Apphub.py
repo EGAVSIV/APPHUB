@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 import hashlib
 import base64
+import os
+
 
 # ================================
 # PAGE CONFIG
