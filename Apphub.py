@@ -21,9 +21,7 @@ def set_bg_image(image_path: str):
         f"""
         <style>
         .stApp {{
-            background:
-                radial-gradient(circle at top left, #050816 0, #020617 45%, #000000 100%),
-                url("data:image/png;base64,{encoded}");
+            background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -38,15 +36,13 @@ def set_bg_image(image_path: str):
 # APPLY BACKGROUND
 # =====================================================
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-
+BASE_PATH = os.path.dirname(__file__)
 bg_path = os.path.join(BASE_PATH, "Assets", "BG11.png")
 
 if os.path.exists(bg_path):
     set_bg_image(bg_path)
 else:
     st.warning(f"Background not found at: {bg_path}")
-
 # ================================
 # GLOBAL CUSTOM CSS (CONTRAST TUNED)
 # ================================
