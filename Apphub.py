@@ -4,7 +4,6 @@ import hashlib
 import base64
 import os
 
-
 # ================================
 # PAGE CONFIG
 # ================================
@@ -13,6 +12,7 @@ st.set_page_config(
     page_icon="🪐",
     layout="wide"
 )
+
 def set_bg_image(image_path: str):
     with open(image_path, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
@@ -35,7 +35,6 @@ def set_bg_image(image_path: str):
 # =====================================================
 # APPLY BACKGROUND
 # =====================================================
-
 BASE_PATH = os.path.dirname(__file__)
 bg_path = os.path.join(BASE_PATH, "Assets", "BG11.png")
 
@@ -43,8 +42,9 @@ if os.path.exists(bg_path):
     set_bg_image(bg_path)
 else:
     st.warning(f"Background not found at: {bg_path}")
+
 # ================================
-# GLOBAL CUSTOM CSS (CONTRAST TUNED)
+# GLOBAL CUSTOM CSS
 # ================================
 st.markdown(
     """
@@ -227,6 +227,37 @@ st.markdown(
     a.gs-mail:hover {
         text-decoration: underline;
     }
+
+    .cat-card {
+        border-radius: 18px;
+        padding: 0.9rem 0.8rem;
+        margin-bottom: 0.9rem;
+        background: linear-gradient(140deg, #0b1120, #020617);
+        border: 1px solid rgba(55,65,81,0.95);
+        text-align: center;
+        cursor: pointer;
+        box-shadow:
+            0 10px 20px rgba(0,0,0,0.9),
+            0 0 0 1px rgba(15,23,42,0.95);
+        transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+    }
+    .cat-card:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            0 16px 34px rgba(0,0,0,0.95),
+            0 0 0 1px rgba(251,191,36,0.9);
+        border-color: #facc15;
+    }
+    .cat-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #f9fafb;
+        margin-bottom: 0.2rem;
+    }
+    .cat-count {
+        font-size: 0.8rem;
+        color: #9ca3af;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -276,7 +307,6 @@ def check_login():
     st.markdown("</div>", unsafe_allow_html=True)
     st.stop()
 
-
 check_login()
 
 # ================================
@@ -290,177 +320,121 @@ st.markdown(
 st.write("")
 
 # ================================
-# APP REGISTRY
+# APP REGISTRY (FROM YOUR TABLE)
 # ================================
 APPS = [
-    {"name": "🪐-☀️ Planetary Aspect Scanner", "category": "Astrology+Equity",
-     "desc": "Filter planetary aspects between two dates using sidereal calculations.",
-     "url": "https://aspectfilter.streamlit.app/"},
-    {"name": "🪐-📉 Stocks Movement on Aspects", "category": "Astrology+Equity",
-     "desc": "Astrological aspect-based stock market analysis.",
-     "url": "https://stock-scanner-ascpect.streamlit.app/"},
-    {"name": "🔁 F&O Reversal Price & Time ", "category": "FNO & Astro",
-     "desc": "Identify high-probability reversal points in F&O stocks.",
-     "url": "https://fnoreversalpnt.streamlit.app/"},
-    {"name": "🌍-🪐-☀️ Live Planet Position", "category": "Astrology",
-     "desc": "Real-time planetary positions with sidereal reference.",
-     "url": "https://liveplanetpostion.streamlit.app/"},
-    {"name": "🤵‍♂️ RaoSaab Research Desk", "category": "Screener",
-     "desc": "Stock Filtration As per AS",
-     "url": "https://raosaab.streamlit.app/"},
-    {"name": "💰 FII–DII Activity Tracker", "category": "Market Data",
-     "desc": "Track daily, weekly and monthly FII–DII activity.",
-     "url": "https://fiidii.streamlit.app/"},
-    {"name": "🔄 F&O Price Cycle", "category": "FNO",
-     "desc": "Price cycle based on Weekly Close 3-69 in F&O instruments.",
-     "url": "https://fnopricecycle.streamlit.app/"},
-    {"name": "📐 Gann Cycle Analyzer", "category": "GANN",
-     "desc": "Gann-based time and price cycle analysis.",
-     "url": "https://ganncycle.streamlit.app/"},
-    {"name": "⏱️ NIFTY Time Cycle", "category": "Index",
-     "desc": "Time-cycle based forecasting for NIFTY.",
-     "url": "https://niftytimecycle.streamlit.app/"},
-    {"name": "⚡ Intraday Reversal Scanner", "category": "FNO & Astro",
-     "desc": "Detect intraday reversal setups with precision.",
-     "url": "https://intradayreversal.streamlit.app/"},
-    {"name": "📰 Market News Aggregator", "category": "News",
-     "desc": "All important market and global news at one place.",
-     "url": "https://allnews.streamlit.app/"},
-    {"name": "📊 Multi-Timeframe Stock Screener", "category": "Screener",
-     "desc": "Multiple Scan Stock Selection",
-     "url": "https://multis.streamlit.app/"},
-    {"name": "1️⃣ 📉 OI Decay Scanner", "category": "FNO",
-     "desc": "Option OI decay and expiry-based behavior analysis.",
-     "url": "https://oidecay.streamlit.app/"},
-    {"name": "2️⃣📉 Option Chain by Gaurav", "category": "FNO",
-     "desc": "Option chain analysis with OI, strikes, and market structure.",
-     "url": "https://optionchainbygaurav.streamlit.app/"},
-    {"name": "3️⃣📚 OI Analytics (GSY)", "category": "FNO",
-     "desc": "Advanced Open Interest analysis and insights.",
-     "url": "https://oiwithgsy.streamlit.app/"},
-    {"name": "☀️ Sun Cycle Analyzer", "category": "Astrology+Equity",
-     "desc": "Solar cycle based timing and trend insights.",
-     "url": "https://suncycle.streamlit.app/"},
-    {"name": "🌎 USA Weather & Energy Impact", "category": "Weather + Commodities",
-     "desc": "US weather analysis with energy and commodity impact.",
-     "url": "https://usaweather.streamlit.app/"},
-    {"name": "1️⃣ USA Weather (Alt-1)", "category": "Weather + Commodities",
-     "desc": "Alternative US weather forecast dashboard.",
-     "url": "https://usaweather1.streamlit.app/"},
-    {"name": "2️⃣ USA Weather (Alt-2)", "category": "Weather + Commodities",
-     "desc": "Secondary US weather and temperature analysis.",
-     "url": "https://usaweather2.streamlit.app/"},
-    {"name": "3️⃣ USA Weather (Alt-3)", "category": "Weather + Commodities",
-     "desc": "Alternative US weather forecast dashboard.",
-     "url": "https://usaweather3.streamlit.app/"},
-    {"name": "4️⃣ USA Weather (Alt-4)", "category": "Weather + Commodities",
-     "desc": "Alternative US weather forecast dashboard.",
-     "url": "https://usaweather4.streamlit.app/"},
-    {"name": "🔺🔻 Back Testing FNO", "category": "Screener",
-     "desc": "Back testing of FNO stocks with current scenarios.",
-     "url": "https://fnobacktesting.streamlit.app/"},
-    {"name": "🏦 NIFTY Sector Analysis", "category": "Screener",
-     "desc": "Sector analysis with rotation.",
-     "url": "https://sectoranalysis.streamlit.app/"},
-    {"name": "📦 Company Announcement to NSE", "category": "Screener",
-     "desc": "Orders, volume spike, management changes.",
-     "url": "https://orderbooktrack.streamlit.app/"},
-    {"name": "🫐 GAMMA_Blaster", "category": "FNO",
-     "desc": "Gamma value scanner.",
-     "url": "https://gammascan.streamlit.app/"},
-    {"name": "🔆✴️ GAMMA_Blaster_2", "category": "FNO",
-     "desc": "Advanced gamma scanner.",
-     "url": "https://gammascan1.streamlit.app/"},
-    {"name": "🟢🔴 Market Depth_Screener", "category": "FNO",
-     "desc": "Order flow and market depth.",
-     "url": "https://marketdepthgs.streamlit.app/"},
-    {"name": "💹 TV_Fundmental Screener", "category": "Screener",
-     "desc": "Fundamental screener.",
-     "url": "https://fundamentalgs.streamlit.app/"},
-    {"name": "❇️ TV_Technical Screener", "category": "Screener",
-     "desc": "Technical screener.",
-     "url": "https://technicalgs.streamlit.app/"},
-    {"name": "✳️ TV_Hybrid Screener", "category": "Screener",
-     "desc": "Hybrid tech + funda screener.",
-     "url": "https://techfunda.streamlit.app/"},
-    {"name": "🏤🏪 Mutual Fund & DII Activities", "category": "Screener",
-     "desc": "MF, Insurance, DII activity.",
-     "url": "https://mfhanalysis.streamlit.app/"},
-    {"name": "🌠 Kundali", "category": "Astrology",
-     "desc": "जन्म कुंडली",
-     "url": "https://birthhcharts.streamlit.app/"},
+    # ASTROLOGY
+    {"name": "Upcoming Aspectes and Past Aspects", "category": "ASTROLOGY",
+     "desc": "Upcoming & past aspects.", "url": "https://aspectfilter.streamlit.app"},
+    {"name": "Live Planent postion", "category": "ASTROLOGY",
+     "desc": "Live planet position.", "url": "https://liveplanetpostion.streamlit.app"},
+    {"name": "Live Planent postion + Janam Kundali", "category": "ASTROLOGY",
+     "desc": "Birth chart with live planets.", "url": "https://birthhcharts.streamlit.app"},
+
+    # FINASTRO
+    {"name": "Stockes Moving on A Aspect Filter", "category": "FINASTRO",
+     "desc": "Stocks on astro aspect filter.", "url": "https://stock-scanner-ascpect.streamlit.app"},
+    {"name": "Daily Reveral Time of Fno Stocks", "category": "FINASTRO",
+     "desc": "F&O reversal time finder.", "url": "https://fnoreversalpnt.streamlit.app"},
+    {"name": "All Cycle Scan", "category": "FINASTRO",
+     "desc": "Astro cycles for instruments.", "url": "https://allcycles.streamlit.app"},
+    {"name": "30 60 90 Cycles for FNO", "category": "FINASTRO",
+     "desc": "Price cycles for F&O.", "url": "https://fnopricecycle.streamlit.app"},
+    {"name": "INTRADE Day REVERSAL NAKSTRA", "category": "FINASTRO",
+     "desc": "Intraday reversal based on Nakshatra.", "url": "https://intradayreversal.streamlit.app"},
+    {"name": "Sun Cycle Scanner", "category": "FINASTRO",
+     "desc": "Sun cycle or move between dates.", "url": "https://suncycle.streamlit.app"},
+
+    # FUNDAMENTAL
+    {"name": "Daly Order Reveving Status", "category": "FUNDAMENTAL",
+     "desc": "Daily order book tracking.", "url": "https://orderbooktrack.streamlit.app"},
+    {"name": "FII-DII MH Activity", "category": "FUNDAMENTAL",
+     "desc": "FII-DII money flow.", "url": "https://fiidii.streamlit.app"},
+    {"name": "Market Cap / PE / ROE Scan", "category": "FUNDAMENTAL",
+     "desc": "Fundamental metrics screener.", "url": "https://fundamentalgs.streamlit.app"},
+    {"name": "Mutual Fund Entry Exit 1", "category": "FUNDAMENTAL",
+     "desc": "MF activity 1.", "url": "https://mfhanalysis2.streamlit.app"},
+    {"name": "Mutual Fund Entry Exit 2", "category": "FUNDAMENTAL",
+     "desc": "MF activity 2.", "url": "https://mfhanalysis.streamlit.app"},
+    {"name": "SCREENER App Scan", "category": "FUNDAMENTAL",
+     "desc": "Fundamental screener with cookies.", "url": "https://screenersapp.streamlit.app"},
+
+    # GANN
+    {"name": "GANN CYCLES for All STOCKS", "category": "GANN",
+     "desc": "Gann cycles.", "url": "https://ganncycle.streamlit.app"},
+    {"name": "GANN Niifty time Cycle", "category": "GANN",
+     "desc": "Nifty time cycle.", "url": "https://niftytimecycle.streamlit.app"},
+
+    # TECHNICAL SCAN
+    {"name": "ASSTTA PARAMERTER SCAN", "category": "TECHNICAL SCAN",
+     "desc": "RaoSaab technical scan.", "url": "https://raosaab.streamlit.app"},
+    {"name": "DOW THEROY TREND Measure", "category": "TECHNICAL SCAN",
+     "desc": "Dow theory trend.", "url": "https://dowtheory.streamlit.app"},
+    {"name": "FIB Retracement Levels Scan", "category": "TECHNICAL SCAN",
+     "desc": "Fibonacci retracements.", "url": "https://fibretracement.streamlit.app"},
+    {"name": "ALL Technical Scan in One APP", "category": "TECHNICAL SCAN",
+     "desc": "Multi technical screener.", "url": "https://multis.streamlit.app"},
+    {"name": "MACD BASE Trend Detectore", "category": "TECHNICAL SCAN",
+     "desc": "MACD trend detector.", "url": "https://8003994518.streamlit.app"},
+    {"name": "Technical Wit Fundamental Scans", "category": "TECHNICAL SCAN",
+     "desc": "Technical + fundamental.", "url": "https://techfunda.streamlit.app"},
+    {"name": "TOP Stock Finding (EMA/RSI/BB/ADX)", "category": "TECHNICAL SCAN",
+     "desc": "Preset technical filters.", "url": "https://technicalgs.streamlit.app"},
+
+    # OPTION CHAIN + GREEKS
+    {"name": "Gamma Blast Scan", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Gamma blaster.", "url": "https://gammascan.streamlit.app"},
+    {"name": "Gamma Blast Scan 2", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Gamma blaster 2.", "url": "https://gammascan1.streamlit.app"},
+    {"name": "Live Market Depth", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Market depth scanner.", "url": "https://marketdepthgs.streamlit.app"},
+    {"name": "Option Chain analysis 1", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Option chain tool 1.", "url": "https://optionchainbygaurav.streamlit.app"},
+    {"name": "Option Chain analysis 2", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Option chain tool 2.", "url": "https://oiwithgaurav.streamlit.app"},
+    {"name": "Option Chain analysis 3", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Option chain tool 3.", "url": "https://oiwithgsy.streamlit.app"},
+    {"name": "OI Decay to Check Sell Movement", "category": "OPTION CHAIN+GREEKS",
+     "desc": "OI decay scanner.", "url": "https://oidecay.streamlit.app"},
+
+    # SECTOR ANALYSIS
+    {"name": "Sectore Ananysis With Comparison", "category": "SECTOR ANALYSIS",
+     "desc": "Sector comparison.", "url": "https://secsea.streamlit.app"},
+    {"name": "Sectore Seasional Impact Monitoring", "category": "SECTOR ANALYSIS",
+     "desc": "Sector seasonality.", "url": "https://sectoranalysis.streamlit.app"},
+
+    # COMMODITY
+    {"name": "US Wearther Forecast", "category": "COMMODITY",
+     "desc": "US weather main.", "url": "https://usaweather.streamlit.app"},
+    {"name": "US Wearther Forecast 1", "category": "COMMODITY",
+     "desc": "US weather alt 1.", "url": "https://usaweather1.streamlit.app"},
+    {"name": "US Wearther Forecast 2", "category": "COMMODITY",
+     "desc": "US weather alt 2.", "url": "https://usaweather2.streamlit.app"},
+    {"name": "US Wearther Forecast 3", "category": "COMMODITY",
+     "desc": "US weather alt 3.", "url": "https://usaweather3.streamlit.app"},
+    {"name": "US Wearther Forecast 4", "category": "COMMODITY",
+     "desc": "US weather alt 4.", "url": "https://usaweather4.streamlit.app"},
+
+    # OTHERS
+    {"name": "ALOG Trading", "category": "Others",
+     "desc": "GS Algo trading.", "url": "https://gsalgo.streamlit.app"},
+    {"name": "NEOTRADER APP", "category": "Others",
+     "desc": "GeoTrader app.", "url": "https://geotrader.streamlit.app"},
+    {"name": "LTP Monitoring", "category": "Others",
+     "desc": "Last traded price monitor.", "url": "https://lasttradedprice.streamlit.app"},
+    {"name": "NEWS at One Place", "category": "Others",
+     "desc": "News hub.", "url": "https://allnews.streamlit.app"},
+    {"name": "NEWS at One Place WITH API", "category": "Others",
+     "desc": "Indian news API.", "url": "https://oneindianews.streamlit.app"},
+    {"name": "FNO Best Run Condtion Detection", "category": "Others",
+     "desc": "FNO condition detector.", "url": "https://fnobacktesting.streamlit.app"},
+    {"name": "Trading Journals", "category": "Others",
+     "desc": "Trading journal app.", "url": "https://tradingjournalgs.streamlit.app"},
 ]
 
 # ================================
-# ADDITIONAL APPS (SKIP IF DUPLICATE URL)
+# HELPER
 # ================================
-extra_urls = [
-    "https://gsalgo.streamlit.app/",
-    "https://geotrader.streamlit.app/",
-    "https://gammascan.streamlit.app/",
-    "https://gammascan1.streamlit.app/",
-    "https://marketdepthgs.streamlit.app/",
-    "https://screenersapp-bgybondappuwidk3q7ttb38.streamlit.app/",
-    "https://fnobacktesting.streamlit.app/",
-]
-
-existing_urls = {a["url"] for a in APPS}
-
-extra_defs = {
-    "https://gsalgo.streamlit.app/": {
-        "name": "🧠 GS Algo Suite",
-        "category": "FNO",
-        "desc": "Algorithmic trading utilities and scanners.",
-    },
-    "https://geotrader.streamlit.app/": {
-        "name": "🌐 GeoTrader",
-        "category": "Astrology+Equity",
-        "desc": "Geographical and astro based market studies.",
-    },
-    "https://screenersapp-bgybondappuwidk3q7ttb38.streamlit.app/": {
-        "name": "📦 Master Screener Hub",
-        "category": "Screener",
-        "desc": "Collection of multiple GS screeners in one place.",
-    },
-}
-
-for url in extra_urls:
-    if url in existing_urls:
-        continue
-    meta = extra_defs.get(url, {
-        "name": f"🔗 Tool @ {url.replace('https://', '').replace('.streamlit.app/','')}",
-        "category": "Misc",
-        "desc": "Additional GS World utility.",
-    })
-    APPS.append({
-        "name": meta["name"],
-        "category": meta["category"],
-        "desc": meta["desc"],
-        "url": url,
-    })
-
-# ================================
-# SEARCH & FILTER
-# ================================
-with st.container():
-    st.markdown("<div class='filter-strip'>", unsafe_allow_html=True)
-    st.markdown(
-        "<div class='filter-title'>APP DISCOVERY PANEL • SEARCH + FILTER</div>",
-        unsafe_allow_html=True,
-    )
-    c_search, c_cat, c_info = st.columns([2.2, 1.4, 1.0])
-    with c_search:
-        search = st.text_input("🔍 Search by name or keyword", value="")
-    with c_cat:
-        category = st.selectbox(
-            "🎯 Filter by category",
-            ["All"] + sorted(set(a["category"] for a in APPS)),
-        )
-    with c_info:
-        st.metric("Total Tools", len(APPS))
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
 def is_live(url: str) -> bool:
     try:
         return requests.get(url, timeout=3).status_code == 200
@@ -468,47 +442,82 @@ def is_live(url: str) -> bool:
         return False
 
 # ================================
-# SORT & DISPLAY
+# CATEGORY VIEW – HOME
 # ================================
-APPS = sorted(APPS, key=lambda x: x["name"].lower())
+all_categories = sorted({a["category"] for a in APPS})
 
-cols = st.columns(8)
-col_index = 0
+if "selected_category" not in st.session_state:
+    st.session_state.selected_category = None
 
-for app in APPS:
-    text = search.strip().lower()
-    if text:
-        if text not in app["name"].lower() and text not in app["desc"].lower():
-            continue
-    if category != "All" and app["category"] != category:
-        continue
+if st.session_state.selected_category is None:
+    # HOME: show categories only
+    st.markdown(
+        "<div class='gs-subtitle'>Select a category to view all apps inside it.</div>",
+        unsafe_allow_html=True,
+    )
 
-    with cols[col_index]:
-        st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-        st.markdown(f"<div class='app-title'>{app['name']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='app-category'>{app['category']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='app-desc'>{app['desc']}</div>", unsafe_allow_html=True)
-
-        live = is_live(app["url"])
-        if live:
+    cols = st.columns(4)
+    idx = 0
+    for cat in all_categories:
+        cat_apps = [a for a in APPS if a["category"] == cat]
+        with cols[idx]:
+            if st.button(cat, key=f"cat_{cat}"):
+                st.session_state.selected_category = cat
+                st.experimental_rerun()
             st.markdown(
-                "<span class='status-pill status-live'>🟢 LIVE</span>",
+                f"<div class='cat-card'><div class='cat-title'>{cat}</div>"
+                f"<div class='cat-count'>{len(cat_apps)} tools</div></div>",
                 unsafe_allow_html=True,
             )
-        else:
-            st.markdown(
-                "<span class='status-pill status-down'>🔴 DOWN</span>",
-                unsafe_allow_html=True,
-            )
+        idx += 1
+        if idx == 4:
+            cols = st.columns(4)
+            idx = 0
+else:
+    # CATEGORY DETAIL: show all apps within selected category
+    cat = st.session_state.selected_category
+    st.markdown(
+        f"<div class='gs-subtitle'>Category: <b>{cat}</b></div>",
+        unsafe_allow_html=True,
+    )
+    if st.button("⬅️ Back to Categories"):
+        st.session_state.selected_category = None
+        st.experimental_rerun()
 
-        st.write("")
-        st.link_button("🚀 Launch App", app["url"])
-        st.markdown("</div>", unsafe_allow_html=True)
+    cat_apps = sorted(
+        [a for a in APPS if a["category"] == cat],
+        key=lambda x: x["name"].lower()
+    )
 
-    col_index += 1
-    if col_index == 8:
-        cols = st.columns(8)
-        col_index = 0
+    cols = st.columns(4)
+    col_index = 0
+    for app in cat_apps:
+        with cols[col_index]:
+            st.markdown("<div class='app-card'>", unsafe_allow_html=True)
+            st.markdown(f"<div class='app-title'>{app['name']}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='app-category'>{app['category']}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='app-desc'>{app['desc']}</div>", unsafe_allow_html=True)
+
+            live = is_live(app["url"])
+            if live:
+                st.markdown(
+                    "<span class='status-pill status-live'>🟢 LIVE</span>",
+                    unsafe_allow_html=True,
+                )
+            else:
+                st.markdown(
+                    "<span class='status-pill status-down'>🔴 DOWN</span>",
+                    unsafe_allow_html=True,
+                )
+
+            st.write("")
+            st.link_button("🚀 Launch App", app["url"])
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        col_index += 1
+        if col_index == 4:
+            cols = st.columns(4)
+            col_index = 0
 
 # ================================
 # FOOTER
