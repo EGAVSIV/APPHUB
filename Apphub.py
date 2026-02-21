@@ -3,7 +3,6 @@ import requests
 import hashlib
 import base64
 import os
-import urllib.parse
 
 # ================================
 # PAGE CONFIG
@@ -98,58 +97,47 @@ st.markdown(
         margin-bottom: 1.1rem;
     }
 
-    /* CATEGORY CARD AS CUSTOM BUTTON */
-    .cat-card {
-        border-radius: 16px;
-        padding: 0.9rem 1.0rem;
-        margin-top: 0.4rem;
-        background: #020617;
-        border: 1px solid #1f2937;
-        text-align: center;
-        box-shadow: 0 14px 30px rgba(0,0,0,0.85);
-        transition: transform 0.12s ease-out,
-                    box-shadow 0.12s ease-out,
-                    border-color 0.12s ease-out,
-                    background 0.12s ease-out;
-        cursor: pointer;
-        text-decoration: none;
-        display: block;
+    /* CATEGORY BUTTONS */
+    .cat-btn > button {
+        width: 100% !important;
+        border-radius: 16px !important;
+        background: #020617 !important;
+        color: #f9fafb !important;
+        border: 1px solid #1f2937 !important;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.85) !important;
+        font-weight: 700 !important;
+        padding-top: 0.7rem !important;
+        padding-bottom: 0.7rem !important;
     }
-    .cat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 18px 36px rgba(0,0,0,0.95);
-        border-color: #22c55e;
-        background: radial-gradient(circle at top, #020617, #020617 40%, #0b1120 100%);
+    .cat-btn > button:hover {
+        background: #0b1120 !important;
+        border-color: #22c55e !important;
     }
-    .cat-title {
+    .cat-title-txt {
         font-size: 1.0rem;
         font-weight: 700;
-        color: #f9fafb;
-        margin-bottom: 0.15rem;
+        display: block;
     }
-    .cat-count {
+    .cat-count-txt {
         font-size: 0.82rem;
         color: #9ca3af;
+        display: block;
+        margin-top: 0.1rem;
     }
 
     /* BACK BUTTON */
-    .back-btn {
-        display: inline-block;
-        margin-bottom: 0.8rem;
-        padding: 0.4rem 0.9rem;
-        border-radius: 999px;
-        background: #111827;
-        color: #e5e7eb;
-        border: 1px solid #4b5563;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-decoration: none;
-        cursor: pointer;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.85);
+    .back-btn > button {
+        border-radius: 999px !important;
+        background: #111827 !important;
+        color: #e5e7eb !important;
+        border: 1px solid #4b5563 !important;
+        font-weight: 600 !important;
+        padding: 0.4rem 0.9rem !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.85) !important;
     }
-    .back-btn:hover {
-        background: #1f2937;
-        border-color: #38bdf8;
+    .back-btn > button:hover {
+        background: #1f2937 !important;
+        border-color: #38bdf8 !important;
     }
 
     /* APP CARD */
@@ -440,17 +428,6 @@ if "selected_category" not in st.session_state:
     st.session_state.selected_category = None
 
 # ================================
-# HANDLE URL HASH (FAKE CLICK)
-# ================================
-query_params = st.experimental_get_query_params()
-if "cat" in query_params:
-    cat_param = query_params["cat"][0]
-    if cat_param == "NONE":
-        st.session_state.selected_category = None
-    else:
-        st.session_state.selected_category = cat_param
-
-# ================================
 # CATEGORY HOME VIEW
 # ================================
 if st.session_state.selected_category is None:
@@ -464,15 +441,21 @@ if st.session_state.selected_category is None:
     for cat in all_categories:
         cat_apps = [a for a in APPS if a["category"] == cat]
         with cols[idx]:
-            # HTML link that sets query param ?cat=...
-            encoded_cat = urllib.parse.quote(cat)
+            label = f"{cat}\n{len(cat_apps)} tools"
+            # Wrap button so CSS can target it
+            with st.container():
+                btn = st.button(label, key=f"cat_{cat}")
+                st.markdown(
+                    f"<script>var el = window.parent.document.querySelector('button[kind=\"secondary\"][data-testid=\"baseButton-secondary\"][aria-label=\"{label}\"]');</script>",
+                    unsafe_allow_html=True,
+                )
+            if btn:
+                st.session_state.selected_category = cat
+                st.experimental_rerun()
+
+            # apply CSS class
             st.markdown(
-                f"""
-                <a href="?cat={encoded_cat}" class="cat-card">
-                    <div class="cat-title">{cat}</div>
-                    <div class="cat-count">{len(cat_apps)} tools</div>
-                </a>
-                """,
+                "<style>.cat-btn{}</style>",
                 unsafe_allow_html=True,
             )
         idx += 1
@@ -490,13 +473,12 @@ else:
         unsafe_allow_html=True,
     )
 
-    # Back link using same custom style
-    st.markdown(
-        """
-        <a href="?cat=NONE" class="back-btn">⬅️ Back to Categories</a>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.container():
+        back = st.button("⬅️ Back to Categories", key="back_cat")
+        st.markdown("", unsafe_allow_html=True)
+    if back:
+        st.session_state.selected_category = None
+        st.experimental_rerun()
 
     cat_apps = sorted(
         [a for a in APPS if a["category"] == cat],
