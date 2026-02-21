@@ -13,10 +13,12 @@ st.set_page_config(
     layout="wide"
 )
 
+# ================================
+# OPTIONAL BACKGROUND IMAGE
+# ================================
 def set_bg_image(image_path: str):
     with open(image_path, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
-
     st.markdown(
         f"""
         <style>
@@ -32,146 +34,169 @@ def set_bg_image(image_path: str):
         unsafe_allow_html=True,
     )
 
-# =====================================================
-# APPLY BACKGROUND
-# =====================================================
 BASE_PATH = os.path.dirname(__file__)
 bg_path = os.path.join(BASE_PATH, "Assets", "BG11.png")
-
 if os.path.exists(bg_path):
     set_bg_image(bg_path)
-else:
-    st.warning(f"Background not found at: {bg_path}")
 
 # ================================
 # GLOBAL CUSTOM CSS
+# High‑contrast, legible dark theme
 # ================================
 st.markdown(
     """
     <style>
+    /* Base app colors: dark grey surfaces, light text */
     .stApp {
-        background: radial-gradient(circle at top left, #050816 0, #020617 45%, #000000 100%);
-        color: #f9fafb;
+        background: linear-gradient(135deg, #020617 0%, #0b1120 40%, #020617 100%);
+        color: #e5e7eb;
         font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
+    /* HEADERS */
     .gs-header {
         text-align: center;
-        padding: 0.4rem 0 0.15rem 0;
-        background: linear-gradient(90deg, #fde047, #fb923c, #f97316, #a855f7, #38bdf8);
+        padding: 0.6rem 0 0.2rem 0;
+        background: linear-gradient(90deg, #22c55e, #38bdf8, #6366f1);
         -webkit-background-clip: text;
         color: transparent;
         font-size: 2.4rem;
         font-weight: 900;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        text-shadow: 0 0 18px rgba(255,255,255,0.25);
+        text-shadow: 0 0 14px rgba(15,23,42,0.9);
     }
     .gs-subtitle {
         text-align: center;
-        font-size: 0.9rem;
-        color: #e5e7eb;
-        margin-top: -0.3rem;
-        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+        color: #cbd5f5;
+        margin-top: -0.15rem;
+        margin-bottom: 1.0rem;
     }
 
+    /* LOGIN CARD */
     .login-card {
         max-width: 420px;
-        margin: 2.5rem auto 0 auto;
+        margin: 2.2rem auto 0 auto;
         padding: 1.6rem 1.4rem 1.2rem 1.4rem;
         border-radius: 18px;
-        background: radial-gradient(circle at top left, #111827 0, #020617 60%);
-        border: 1px solid rgba(148, 163, 184, 0.85);
-        box-shadow:
-            0 0 0 1px rgba(15,23,42,0.95),
-            0 22px 55px rgba(0,0,0,0.9);
+        background: #020617;
+        border: 1px solid #1f2937;
+        box-shadow: 0 22px 45px rgba(0,0,0,0.85);
     }
     .login-title {
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         font-weight: 700;
         margin-bottom: 0.3rem;
         color: #f9fafb;
     }
     .login-sub {
         text-align: center;
-        font-size: 0.85rem;
-        color: #e5e7eb;
+        font-size: 0.9rem;
+        color: #9ca3af;
         margin-bottom: 1.1rem;
     }
 
+    /* FILTER STRIP */
     .filter-strip {
-        background: rgba(15,23,42,0.98);
-        border-radius: 16px;
-        padding: 0.7rem 0.9rem 0.8rem 0.9rem;
-        border: 1px solid rgba(148,163,184,0.85);
-        box-shadow: 0 15px 35px rgba(15,23,42,0.95);
+        background: #020617;
+        border-radius: 14px;
+        padding: 0.6rem 0.9rem 0.7rem 0.9rem;
+        border: 1px solid #1f2937;
+        box-shadow: 0 16px 32px rgba(0,0,0,0.8);
         margin-bottom: 0.8rem;
     }
     .filter-title {
         font-size: 0.8rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: #9ca3af;
+        color: #94a3b8;
         margin-bottom: 0.25rem;
     }
 
+    /* CATEGORY CARD */
+    .cat-card {
+        border-radius: 16px;
+        padding: 0.75rem 0.8rem 0.8rem 0.8rem;
+        margin-top: 0.4rem;
+        background: #020617;
+        border: 1px solid #1f2937;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.85);
+        transition: transform 0.12s ease-out,
+                    box-shadow 0.12s ease-out,
+                    border-color 0.12s ease-out,
+                    background 0.12s ease-out;
+    }
+    .cat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 36px rgba(0,0,0,0.95);
+        border-color: #22c55e;
+        background: radial-gradient(circle at top, #020617, #020617 40%, #0f172a 100%);
+    }
+    .cat-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #f9fafb;
+        margin-bottom: 0.1rem;
+    }
+    .cat-count {
+        font-size: 0.8rem;
+        color: #9ca3af;
+    }
+
+    /* APP CARD */
     .app-card {
         border-radius: 18px;
-        padding: 0.9rem 0.8rem 0.85rem 0.8rem;
+        padding: 0.9rem 0.9rem 0.85rem 0.9rem;
         margin-bottom: 0.9rem;
-        background: linear-gradient(140deg, #111827, #020617);
-        border: 1px solid rgba(55,65,81,0.95);
-        box-shadow:
-            0 10px 20px rgba(0,0,0,0.9),
-            0 0 0 1px rgba(15,23,42,0.95);
-        transform: translateY(0px);
-        transition:
-            transform 0.16s ease-out,
-            box-shadow 0.16s ease-out,
-            border-color 0.16s ease-out,
-            background 0.16s ease-out;
+        background: #020617;
+        border: 1px solid #1f2937;
+        box-shadow: 0 16px 34px rgba(0,0,0,0.9);
+        transition: transform 0.12s ease-out,
+                    box-shadow 0.12s ease-out,
+                    border-color 0.12s ease-out,
+                    background 0.12s ease-out;
     }
     .app-card:hover {
         transform: translateY(-2px);
-        box-shadow:
-            0 16px 34px rgba(0,0,0,0.95),
-            0 0 0 1px rgba(129,140,248,0.9);
-        border-color: #facc15;
-        background: radial-gradient(circle at top left, #1e293b, #020617);
+        box-shadow: 0 20px 40px rgba(0,0,0,1);
+        border-color: #38bdf8;
+        background: radial-gradient(circle at top, #020617, #020617 45%, #0b1120 100%);
     }
 
     .app-title {
-        font-size: 0.96rem;
+        font-size: 0.98rem;
         font-weight: 700;
         color: #f9fafb;
-        margin-bottom: 0.15rem;
+        margin-bottom: 0.18rem;
         white-space: normal;
     }
     .app-category {
         font-size: 0.72rem;
         font-weight: 600;
         letter-spacing: 0.08em;
-        color: #a5b4fc;
+        color: #38bdf8;
         text-transform: uppercase;
-        opacity: 0.96;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.25rem;
     }
     .app-desc {
-        font-size: 0.78rem;
-        color: #e5e7eb;
+        font-size: 0.8rem;
+        color: #cbd5f5;
         min-height: 2.2rem;
-        margin-bottom: 0.45rem;
+        margin-bottom: 0.5rem;
     }
 
     .status-pill {
         display: inline-flex;
         align-items: center;
         gap: 0.3rem;
-        padding: 0.12rem 0.7rem;
+        padding: 0.14rem 0.7rem;
         border-radius: 999px;
         font-size: 0.72rem;
         font-weight: 700;
@@ -181,82 +206,54 @@ st.markdown(
     .status-live {
         background: rgba(22,163,74,0.18);
         color: #bbf7d0;
-        border: 1px solid rgba(34,197,94,0.9);
+        border: 1px solid #22c55e;
     }
     .status-down {
-        background: rgba(220,38,38,0.22);
+        background: rgba(220,38,38,0.18);
         color: #fecaca;
-        border: 1px solid rgba(248,113,113,0.95);
+        border: 1px solid #f97373;
     }
 
+    /* BUTTON INSIDE APP CARD */
     .app-card button[kind="secondary"] {
         width: 100% !important;
         border-radius: 999px !important;
         border: none !important;
-        padding-top: 0.38rem !important;
-        padding-bottom: 0.38rem !important;
+        padding-top: 0.42rem !important;
+        padding-bottom: 0.42rem !important;
         font-weight: 700 !important;
-        background: linear-gradient(90deg, #fb923c, #fde047) !important;
-        color: #111827 !important;
-        box-shadow: 0 10px 18px rgba(0,0,0,0.85);
+        background: linear-gradient(90deg, #22c55e, #38bdf8) !important;
+        color: #020617 !important;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.85);
     }
     .app-card button[kind="secondary"]:hover {
-        box-shadow: 0 12px 24px rgba(0,0,0,0.95);
-        filter: brightness(1.06);
+        filter: brightness(1.08);
+        box-shadow: 0 16px 30px rgba(0,0,0,0.95);
     }
 
+    /* FOOTER */
     .gs-footer {
         text-align: center;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #9ca3af;
         margin-top: 1.4rem;
         padding-top: 0.7rem;
-        border-top: 1px dashed rgba(148,163,184,0.7);
+        border-top: 1px dashed rgba(55,65,81,0.9);
+        background: rgba(15,23,42,0.8);
     }
     .gs-footer strong {
         color: #e5e7eb;
     }
     .footer-highlight {
-        color: #fbbf24;
+        color: #22c55e;
         font-weight: 600;
     }
     a.gs-mail {
-        color: #60a5fa;
+        color: #38bdf8;
         text-decoration: none;
     }
     a.gs-mail:hover {
         text-decoration: underline;
-    }
-
-    .cat-card {
-        border-radius: 18px;
-        padding: 0.9rem 0.8rem;
-        margin-bottom: 0.9rem;
-        background: linear-gradient(140deg, #0b1120, #020617);
-        border: 1px solid rgba(55,65,81,0.95);
-        text-align: center;
-        cursor: pointer;
-        box-shadow:
-            0 10px 20px rgba(0,0,0,0.9),
-            0 0 0 1px rgba(15,23,42,0.95);
-        transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
-    }
-    .cat-card:hover {
-        transform: translateY(-2px);
-        box-shadow:
-            0 16px 34px rgba(0,0,0,0.95),
-            0 0 0 1px rgba(251,191,36,0.9);
-        border-color: #facc15;
-    }
-    .cat-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f9fafb;
-        margin-bottom: 0.2rem;
-    }
-    .cat-count {
-        font-size: 0.8rem;
-        color: #9ca3af;
     }
     </style>
     """,
@@ -264,7 +261,7 @@ st.markdown(
 )
 
 # ================================
-# LOGIN FUNCTION
+# LOGIN
 # ================================
 def check_login():
     if "logged_in" not in st.session_state:
@@ -310,130 +307,129 @@ def check_login():
 check_login()
 
 # ================================
-# TOP HEADER
+# HEADER
 # ================================
 st.markdown("<div class='gs-header'>GS WORLD • APP HUB</div>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='gs-subtitle'>🧭 Astrology • F&O • Index • Weather • Quant Research — All in One Place</div>",
+    "<div class='gs-subtitle'>🧭 High‑contrast dashboard for Astrology • F&O • Sector • Weather tools</div>",
     unsafe_allow_html=True,
 )
-st.write("")
 
 # ================================
-# APP REGISTRY (FROM YOUR TABLE)
+# APP REGISTRY (your mapping)
 # ================================
 APPS = [
     # ASTROLOGY
     {"name": "Upcoming Aspectes and Past Aspects", "category": "ASTROLOGY",
-     "desc": "Upcoming & past aspects.", "url": "https://aspectfilter.streamlit.app"},
+     "desc": "Upcoming and past planetary aspects.", "url": "https://aspectfilter.streamlit.app"},
     {"name": "Live Planent postion", "category": "ASTROLOGY",
-     "desc": "Live planet position.", "url": "https://liveplanetpostion.streamlit.app"},
-    {"name": "Live Planent postion + Janam Kundali", "category": "ASTROLOGY",
-     "desc": "Birth chart with live planets.", "url": "https://birthhcharts.streamlit.app"},
+     "desc": "Live planetary positions.", "url": "https://liveplanetpostion.streamlit.app"},
+    {"name": "Janam Kundali + Live Planets", "category": "ASTROLOGY",
+     "desc": "Birth chart with live planet positions.", "url": "https://birthhcharts.streamlit.app"},
 
     # FINASTRO
-    {"name": "Stockes Moving on A Aspect Filter", "category": "FINASTRO",
-     "desc": "Stocks on astro aspect filter.", "url": "https://stock-scanner-ascpect.streamlit.app"},
-    {"name": "Daily Reveral Time of Fno Stocks", "category": "FINASTRO",
-     "desc": "F&O reversal time finder.", "url": "https://fnoreversalpnt.streamlit.app"},
+    {"name": "Stocks Moving on Aspect Filter", "category": "FINASTRO",
+     "desc": "Stocks reacting to planetary aspects.", "url": "https://stock-scanner-ascpect.streamlit.app"},
+    {"name": "Daily Reveral Time of FNO Stocks", "category": "FINASTRO",
+     "desc": "Astro based intraday reversal time for F&O.", "url": "https://fnoreversalpnt.streamlit.app"},
     {"name": "All Cycle Scan", "category": "FINASTRO",
-     "desc": "Astro cycles for instruments.", "url": "https://allcycles.streamlit.app"},
-    {"name": "30 60 90 Cycles for FNO", "category": "FINASTRO",
-     "desc": "Price cycles for F&O.", "url": "https://fnopricecycle.streamlit.app"},
-    {"name": "INTRADE Day REVERSAL NAKSTRA", "category": "FINASTRO",
+     "desc": "Multiple astro cycles scan.", "url": "https://allcycles.streamlit.app"},
+    {"name": "30‑60‑90 Cycles for FNO", "category": "FINASTRO",
+     "desc": "Cycle scanner for F&O instruments.", "url": "https://fnopricecycle.streamlit.app"},
+    {"name": "INTRADE Day REVERSAL (Nakshatra)", "category": "FINASTRO",
      "desc": "Intraday reversal based on Nakshatra.", "url": "https://intradayreversal.streamlit.app"},
-    {"name": "Sun Cycle Scanner", "category": "FINASTRO",
-     "desc": "Sun cycle or move between dates.", "url": "https://suncycle.streamlit.app"},
+    {"name": "Sun Cycle / Move Between Dates", "category": "FINASTRO",
+     "desc": "Sun cycle scanner between two dates.", "url": "https://suncycle.streamlit.app"},
 
     # FUNDAMENTAL
-    {"name": "Daly Order Reveving Status", "category": "FUNDAMENTAL",
-     "desc": "Daily order book tracking.", "url": "https://orderbooktrack.streamlit.app"},
-    {"name": "FII-DII MH Activity", "category": "FUNDAMENTAL",
-     "desc": "FII-DII money flow.", "url": "https://fiidii.streamlit.app"},
-    {"name": "Market Cap / PE / ROE Scan", "category": "FUNDAMENTAL",
-     "desc": "Fundamental metrics screener.", "url": "https://fundamentalgs.streamlit.app"},
+    {"name": "Daily Order Receiving Status", "category": "FUNDAMENTAL",
+     "desc": "Order book tracking screener.", "url": "https://orderbooktrack.streamlit.app"},
+    {"name": "FII‑DII MH Activity", "category": "FUNDAMENTAL",
+     "desc": "FII and DII money flow analysis.", "url": "https://fiidii.streamlit.app"},
+    {"name": "Fundamental Metrics Screener", "category": "FUNDAMENTAL",
+     "desc": "Market cap, PE, ROE, ROA, dividend, revenue.", "url": "https://fundamentalgs.streamlit.app"},
     {"name": "Mutual Fund Entry Exit 1", "category": "FUNDAMENTAL",
-     "desc": "MF activity 1.", "url": "https://mfhanalysis2.streamlit.app"},
+     "desc": "Mutual fund activity scanner 1.", "url": "https://mfhanalysis2.streamlit.app"},
     {"name": "Mutual Fund Entry Exit 2", "category": "FUNDAMENTAL",
-     "desc": "MF activity 2.", "url": "https://mfhanalysis.streamlit.app"},
-    {"name": "SCREENER App Scan", "category": "FUNDAMENTAL",
+     "desc": "Mutual fund activity scanner 2.", "url": "https://mfhanalysis.streamlit.app"},
+    {"name": "SCREENER App Scan (Cookies)", "category": "FUNDAMENTAL",
      "desc": "Fundamental screener with cookies.", "url": "https://screenersapp.streamlit.app"},
 
     # GANN
     {"name": "GANN CYCLES for All STOCKS", "category": "GANN",
-     "desc": "Gann cycles.", "url": "https://ganncycle.streamlit.app"},
-    {"name": "GANN Niifty time Cycle", "category": "GANN",
-     "desc": "Nifty time cycle.", "url": "https://niftytimecycle.streamlit.app"},
+     "desc": "Gann time and price cycles.", "url": "https://ganncycle.streamlit.app"},
+    {"name": "GANN Nifty Time Cycle", "category": "GANN",
+     "desc": "Nifty time cycle analysis.", "url": "https://niftytimecycle.streamlit.app"},
 
     # TECHNICAL SCAN
     {"name": "ASSTTA PARAMERTER SCAN", "category": "TECHNICAL SCAN",
-     "desc": "RaoSaab technical scan.", "url": "https://raosaab.streamlit.app"},
-    {"name": "DOW THEROY TREND Measure", "category": "TECHNICAL SCAN",
-     "desc": "Dow theory trend.", "url": "https://dowtheory.streamlit.app"},
+     "desc": "RaoSaab technical parameter scan.", "url": "https://raosaab.streamlit.app"},
+    {"name": "DOW THEORY TREND Measure", "category": "TECHNICAL SCAN",
+     "desc": "Trend measure using Dow Theory.", "url": "https://dowtheory.streamlit.app"},
     {"name": "FIB Retracement Levels Scan", "category": "TECHNICAL SCAN",
-     "desc": "Fibonacci retracements.", "url": "https://fibretracement.streamlit.app"},
+     "desc": "Fibonacci retracement scanner.", "url": "https://fibretracement.streamlit.app"},
     {"name": "ALL Technical Scan in One APP", "category": "TECHNICAL SCAN",
-     "desc": "Multi technical screener.", "url": "https://multis.streamlit.app"},
-    {"name": "MACD BASE Trend Detectore", "category": "TECHNICAL SCAN",
-     "desc": "MACD trend detector.", "url": "https://8003994518.streamlit.app"},
-    {"name": "Technical Wit Fundamental Scans", "category": "TECHNICAL SCAN",
-     "desc": "Technical + fundamental.", "url": "https://techfunda.streamlit.app"},
+     "desc": "Multi‑scan technical screener.", "url": "https://multis.streamlit.app"},
+    {"name": "MACD BASE Trend Detector", "category": "TECHNICAL SCAN",
+     "desc": "Trend detection using MACD.", "url": "https://8003994518.streamlit.app"},
+    {"name": "Technical With Fundamental Scans", "category": "TECHNICAL SCAN",
+     "desc": "Hybrid technical + fundamental scans.", "url": "https://techfunda.streamlit.app"},
     {"name": "TOP Stock Finding (EMA/RSI/BB/ADX)", "category": "TECHNICAL SCAN",
-     "desc": "Preset technical filters.", "url": "https://technicalgs.streamlit.app"},
+     "desc": "Preset technical filters for stock picking.", "url": "https://technicalgs.streamlit.app"},
 
     # OPTION CHAIN + GREEKS
     {"name": "Gamma Blast Scan", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Gamma blaster.", "url": "https://gammascan.streamlit.app"},
+     "desc": "Gamma blaster scan.", "url": "https://gammascan.streamlit.app"},
     {"name": "Gamma Blast Scan 2", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Gamma blaster 2.", "url": "https://gammascan1.streamlit.app"},
+     "desc": "Advanced gamma blaster scan.", "url": "https://gammascan1.streamlit.app"},
     {"name": "Live Market Depth", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Market depth scanner.", "url": "https://marketdepthgs.streamlit.app"},
+     "desc": "Market depth and order book.", "url": "https://marketdepthgs.streamlit.app"},
     {"name": "Option Chain analysis 1", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Option chain tool 1.", "url": "https://optionchainbygaurav.streamlit.app"},
+     "desc": "Option chain scanner v1.", "url": "https://optionchainbygaurav.streamlit.app"},
     {"name": "Option Chain analysis 2", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Option chain tool 2.", "url": "https://oiwithgaurav.streamlit.app"},
+     "desc": "Option chain scanner v2.", "url": "https://oiwithgaurav.streamlit.app"},
     {"name": "Option Chain analysis 3", "category": "OPTION CHAIN+GREEKS",
-     "desc": "Option chain tool 3.", "url": "https://oiwithgsy.streamlit.app"},
-    {"name": "OI Decay to Check Sell Movement", "category": "OPTION CHAIN+GREEKS",
+     "desc": "Option chain scanner v3.", "url": "https://oiwithgsy.streamlit.app"},
+    {"name": "OI Decay – Sell Movement", "category": "OPTION CHAIN+GREEKS",
      "desc": "OI decay scanner.", "url": "https://oidecay.streamlit.app"},
 
     # SECTOR ANALYSIS
-    {"name": "Sectore Ananysis With Comparison", "category": "SECTOR ANALYSIS",
-     "desc": "Sector comparison.", "url": "https://secsea.streamlit.app"},
-    {"name": "Sectore Seasional Impact Monitoring", "category": "SECTOR ANALYSIS",
-     "desc": "Sector seasonality.", "url": "https://sectoranalysis.streamlit.app"},
+    {"name": "Sector Analysis With Comparison", "category": "SECTOR ANALYSIS",
+     "desc": "Sector comparison dashboard.", "url": "https://secsea.streamlit.app"},
+    {"name": "Sector Seasonal Impact Monitoring", "category": "SECTOR ANALYSIS",
+     "desc": "Seasonality of sectors.", "url": "https://sectoranalysis.streamlit.app"},
 
-    # COMMODITY
-    {"name": "US Wearther Forecast", "category": "COMMODITY",
-     "desc": "US weather main.", "url": "https://usaweather.streamlit.app"},
-    {"name": "US Wearther Forecast 1", "category": "COMMODITY",
-     "desc": "US weather alt 1.", "url": "https://usaweather1.streamlit.app"},
-    {"name": "US Wearther Forecast 2", "category": "COMMODITY",
-     "desc": "US weather alt 2.", "url": "https://usaweather2.streamlit.app"},
-    {"name": "US Wearther Forecast 3", "category": "COMMODITY",
-     "desc": "US weather alt 3.", "url": "https://usaweather3.streamlit.app"},
-    {"name": "US Wearther Forecast 4", "category": "COMMODITY",
-     "desc": "US weather alt 4.", "url": "https://usaweather4.streamlit.app"},
+    # COMMODITY / WEATHER
+    {"name": "US Weather Forecast", "category": "COMMODITY",
+     "desc": "Primary US weather forecast.", "url": "https://usaweather.streamlit.app"},
+    {"name": "US Weather Forecast 1", "category": "COMMODITY",
+     "desc": "US weather forecast alt‑1.", "url": "https://usaweather1.streamlit.app"},
+    {"name": "US Weather Forecast 2", "category": "COMMODITY",
+     "desc": "US weather forecast alt‑2.", "url": "https://usaweather2.streamlit.app"},
+    {"name": "US Weather Forecast 3", "category": "COMMODITY",
+     "desc": "US weather forecast alt‑3.", "url": "https://usaweather3.streamlit.app"},
+    {"name": "US Weather Forecast 4", "category": "COMMODITY",
+     "desc": "US weather forecast alt‑4.", "url": "https://usaweather4.streamlit.app"},
 
     # OTHERS
-    {"name": "ALOG Trading", "category": "Others",
-     "desc": "GS Algo trading.", "url": "https://gsalgo.streamlit.app"},
-    {"name": "NEOTRADER APP", "category": "Others",
-     "desc": "GeoTrader app.", "url": "https://geotrader.streamlit.app"},
+    {"name": "ALGO Trading Suite", "category": "Others",
+     "desc": "GS Algo trading utilities.", "url": "https://gsalgo.streamlit.app"},
+    {"name": "NEOTRADER / GeoTrader", "category": "Others",
+     "desc": "GeoTrader based utilities.", "url": "https://geotrader.streamlit.app"},
     {"name": "LTP Monitoring", "category": "Others",
-     "desc": "Last traded price monitor.", "url": "https://lasttradedprice.streamlit.app"},
+     "desc": "Last traded price monitoring.", "url": "https://lasttradedprice.streamlit.app"},
     {"name": "NEWS at One Place", "category": "Others",
-     "desc": "News hub.", "url": "https://allnews.streamlit.app"},
-    {"name": "NEWS at One Place WITH API", "category": "Others",
-     "desc": "Indian news API.", "url": "https://oneindianews.streamlit.app"},
-    {"name": "FNO Best Run Condtion Detection", "category": "Others",
-     "desc": "FNO condition detector.", "url": "https://fnobacktesting.streamlit.app"},
+     "desc": "Market and global news hub.", "url": "https://allnews.streamlit.app"},
+    {"name": "NEWS at One Place (API)", "category": "Others",
+     "desc": "Indian news with API.", "url": "https://oneindianews.streamlit.app"},
+    {"name": "FNO Best Run Condition Detection", "category": "Others",
+     "desc": "Back‑testing for best FNO runs.", "url": "https://fnobacktesting.streamlit.app"},
     {"name": "Trading Journals", "category": "Others",
-     "desc": "Trading journal app.", "url": "https://tradingjournalgs.streamlit.app"},
+     "desc": "Trading journal manager.", "url": "https://tradingjournalgs.streamlit.app"},
 ]
 
 # ================================
-# HELPER
+# HELPERS
 # ================================
 def is_live(url: str) -> bool:
     try:
@@ -441,18 +437,17 @@ def is_live(url: str) -> bool:
     except Exception:
         return False
 
-# ================================
-# CATEGORY VIEW – HOME
-# ================================
 all_categories = sorted({a["category"] for a in APPS})
 
 if "selected_category" not in st.session_state:
     st.session_state.selected_category = None
 
+# ================================
+# CATEGORY HOME VIEW
+# ================================
 if st.session_state.selected_category is None:
-    # HOME: show categories only
     st.markdown(
-        "<div class='gs-subtitle'>Select a category to view all apps inside it.</div>",
+        "<div class='gs-subtitle'>Select a category card to view all tools inside it.</div>",
         unsafe_allow_html=True,
     )
 
@@ -461,25 +456,31 @@ if st.session_state.selected_category is None:
     for cat in all_categories:
         cat_apps = [a for a in APPS if a["category"] == cat]
         with cols[idx]:
-            if st.button(cat, key=f"cat_{cat}"):
+            if st.button(cat, key=f"cat_btn_{cat}"):
                 st.session_state.selected_category = cat
                 st.experimental_rerun()
             st.markdown(
-                f"<div class='cat-card'><div class='cat-title'>{cat}</div>"
-                f"<div class='cat-count'>{len(cat_apps)} tools</div></div>",
+                f"<div class='cat-card'>"
+                f"<div class='cat-title'>{cat}</div>"
+                f"<div class='cat-count'>{len(cat_apps)} tools</div>"
+                f"</div>",
                 unsafe_allow_html=True,
             )
         idx += 1
         if idx == 4:
             cols = st.columns(4)
             idx = 0
+
+# ================================
+# CATEGORY DETAIL VIEW
+# ================================
 else:
-    # CATEGORY DETAIL: show all apps within selected category
     cat = st.session_state.selected_category
     st.markdown(
         f"<div class='gs-subtitle'>Category: <b>{cat}</b></div>",
         unsafe_allow_html=True,
     )
+
     if st.button("⬅️ Back to Categories"):
         st.session_state.selected_category = None
         st.experimental_rerun()
@@ -491,6 +492,7 @@ else:
 
     cols = st.columns(4)
     col_index = 0
+
     for app in cat_apps:
         with cols[col_index]:
             st.markdown("<div class='app-card'>", unsafe_allow_html=True)
