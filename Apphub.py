@@ -3,6 +3,7 @@ import requests
 import hashlib
 import base64
 import os
+import urllib.parse
 
 # ================================
 # PAGE CONFIG
@@ -40,15 +41,13 @@ if os.path.exists(bg_path):
     set_bg_image(bg_path)
 
 # ================================
-# GLOBAL CUSTOM CSS
-# High‑contrast, legible dark theme
+# GLOBAL CUSTOM CSS – HIGH CONTRAST
 # ================================
 st.markdown(
     """
     <style>
-    /* Base app colors: dark grey surfaces, light text */
     .stApp {
-        background: linear-gradient(135deg, #020617 0%, #0b1120 40%, #020617 100%);
+        background: radial-gradient(circle at top, #020617 0%, #020617 40%, #020617 100%);
         color: #e5e7eb;
         font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -56,7 +55,6 @@ st.markdown(
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* HEADERS */
     .gs-header {
         text-align: center;
         padding: 0.6rem 0 0.2rem 0;
@@ -77,7 +75,6 @@ st.markdown(
         margin-bottom: 1.0rem;
     }
 
-    /* LOGIN CARD */
     .login-card {
         max-width: 420px;
         margin: 2.2rem auto 0 auto;
@@ -101,53 +98,58 @@ st.markdown(
         margin-bottom: 1.1rem;
     }
 
-    /* FILTER STRIP */
-    .filter-strip {
-        background: #020617;
-        border-radius: 14px;
-        padding: 0.6rem 0.9rem 0.7rem 0.9rem;
-        border: 1px solid #1f2937;
-        box-shadow: 0 16px 32px rgba(0,0,0,0.8);
-        margin-bottom: 0.8rem;
-    }
-    .filter-title {
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #94a3b8;
-        margin-bottom: 0.25rem;
-    }
-
-    /* CATEGORY CARD */
+    /* CATEGORY CARD AS CUSTOM BUTTON */
     .cat-card {
         border-radius: 16px;
-        padding: 0.75rem 0.8rem 0.8rem 0.8rem;
+        padding: 0.9rem 1.0rem;
         margin-top: 0.4rem;
         background: #020617;
         border: 1px solid #1f2937;
         text-align: center;
-        cursor: pointer;
         box-shadow: 0 14px 30px rgba(0,0,0,0.85);
         transition: transform 0.12s ease-out,
                     box-shadow 0.12s ease-out,
                     border-color 0.12s ease-out,
                     background 0.12s ease-out;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
     }
     .cat-card:hover {
         transform: translateY(-2px);
         box-shadow: 0 18px 36px rgba(0,0,0,0.95);
         border-color: #22c55e;
-        background: radial-gradient(circle at top, #020617, #020617 40%, #0f172a 100%);
+        background: radial-gradient(circle at top, #020617, #020617 40%, #0b1120 100%);
     }
     .cat-title {
-        font-size: 1rem;
+        font-size: 1.0rem;
         font-weight: 700;
         color: #f9fafb;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.15rem;
     }
     .cat-count {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #9ca3af;
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 0.8rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        background: #111827;
+        color: #e5e7eb;
+        border: 1px solid #4b5563;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.85);
+    }
+    .back-btn:hover {
+        background: #1f2937;
+        border-color: #38bdf8;
     }
 
     /* APP CARD */
@@ -214,7 +216,6 @@ st.markdown(
         border: 1px solid #f97373;
     }
 
-    /* BUTTON INSIDE APP CARD */
     .app-card button[kind="secondary"] {
         width: 100% !important;
         border-radius: 999px !important;
@@ -231,7 +232,6 @@ st.markdown(
         box-shadow: 0 16px 30px rgba(0,0,0,0.95);
     }
 
-    /* FOOTER */
     .gs-footer {
         text-align: center;
         font-size: 0.82rem;
@@ -316,7 +316,7 @@ st.markdown(
 )
 
 # ================================
-# APP REGISTRY (your mapping)
+# APP REGISTRY
 # ================================
 APPS = [
     # ASTROLOGY
@@ -428,9 +428,6 @@ APPS = [
      "desc": "Trading journal manager.", "url": "https://tradingjournalgs.streamlit.app"},
 ]
 
-# ================================
-# HELPERS
-# ================================
 def is_live(url: str) -> bool:
     try:
         return requests.get(url, timeout=3).status_code == 200
@@ -441,6 +438,17 @@ all_categories = sorted({a["category"] for a in APPS})
 
 if "selected_category" not in st.session_state:
     st.session_state.selected_category = None
+
+# ================================
+# HANDLE URL HASH (FAKE CLICK)
+# ================================
+query_params = st.experimental_get_query_params()
+if "cat" in query_params:
+    cat_param = query_params["cat"][0]
+    if cat_param == "NONE":
+        st.session_state.selected_category = None
+    else:
+        st.session_state.selected_category = cat_param
 
 # ================================
 # CATEGORY HOME VIEW
@@ -456,14 +464,15 @@ if st.session_state.selected_category is None:
     for cat in all_categories:
         cat_apps = [a for a in APPS if a["category"] == cat]
         with cols[idx]:
-            if st.button(cat, key=f"cat_btn_{cat}"):
-                st.session_state.selected_category = cat
-                st.experimental_rerun()
+            # HTML link that sets query param ?cat=...
+            encoded_cat = urllib.parse.quote(cat)
             st.markdown(
-                f"<div class='cat-card'>"
-                f"<div class='cat-title'>{cat}</div>"
-                f"<div class='cat-count'>{len(cat_apps)} tools</div>"
-                f"</div>",
+                f"""
+                <a href="?cat={encoded_cat}" class="cat-card">
+                    <div class="cat-title">{cat}</div>
+                    <div class="cat-count">{len(cat_apps)} tools</div>
+                </a>
+                """,
                 unsafe_allow_html=True,
             )
         idx += 1
@@ -481,9 +490,13 @@ else:
         unsafe_allow_html=True,
     )
 
-    if st.button("⬅️ Back to Categories"):
-        st.session_state.selected_category = None
-        st.experimental_rerun()
+    # Back link using same custom style
+    st.markdown(
+        """
+        <a href="?cat=NONE" class="back-btn">⬅️ Back to Categories</a>
+        """,
+        unsafe_allow_html=True,
+    )
 
     cat_apps = sorted(
         [a for a in APPS if a["category"] == cat],
@@ -492,7 +505,6 @@ else:
 
     cols = st.columns(4)
     col_index = 0
-
     for app in cat_apps:
         with cols[col_index]:
             st.markdown("<div class='app-card'>", unsafe_allow_html=True)
